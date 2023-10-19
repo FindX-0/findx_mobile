@@ -16,26 +16,39 @@ dependencies:
 
   intl: ^0.18.0
 
+  # ui
   flutter_svg: ^2.0.6
 
+  # network/data
   freezed_annotation: ^2.2.0
-  shared_preferences: ^2.1.2
   json_annotation: ^4.8.1
+  json_serializable: ^6.7.0
   dio: ^5.2.0+1
-  url_launcher: ^6.1.11
+  retrofit: ^4.0.1
+
+  # storage
+  shared_preferences: ^2.1.2
+  flutter_secure_storage: ^8.0.0
+
+  # DI
   injectable: ^2.1.2
   get_it: ^7.6.0
+
+  # state
   flutter_bloc: ^8.1.3
-  collection: ^1.17.0
-  retrofit: ^4.0.1
-  json_serializable: ^6.7.0
   flutter_hooks: ^0.18.6
+
+  # util
   logger: ^1.4.0
   just_audio: ^0.9.34
   flutter_dotenv: ^5.1.0
-  flutter_secure_storage: ^8.0.0
+  collection: ^1.17.0
   synchronized: ^3.1.0
   flutter_udid: ^2.0.1
+  url_launcher: ^6.1.11
+
+  # authentication
+  google_sign_in: ^6.1.5
 
   static_i18n:
     git:
