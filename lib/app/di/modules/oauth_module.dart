@@ -14,7 +14,6 @@ abstract class OauthModule {
     log('ios key = ${AppEnvironment.googleAuthClientIdIos}');
 
     return GoogleSignIn(
-      // serverClientId: Platform.isIOS ? null : AppEnvironment.googleAuthClientIdAndroid,
       clientId: Platform.isIOS ? AppEnvironment.googleAuthClientIdIos : null,
     );
   }
