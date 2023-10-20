@@ -39,5 +39,5 @@ Future<void> main() async {
 
   HttpOverrides.global = GlobalHttpOverrides();
 
-  runApp(App());
+  runApp(const App());
 }

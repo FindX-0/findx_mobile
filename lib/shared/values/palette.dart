@@ -10,7 +10,7 @@ class Palette {
 
   // light theme
   static const Color primary = Color(0xFFFFFFFF);
-  static const Color secondary = Color(0xFFFF5722);
+  static const Color secondary = Color(0xFFAF8CF8);
   static const Color secondaryDark = Color(0xFFE34E1F);
   static const Color secondaryLight = Color(0xFFF36A3E);
 
