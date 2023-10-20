@@ -3,8 +3,10 @@ import 'dart:developer';
 import 'package:common_models/common_models.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../app/di/register_dependencies.dart';
 import '../api/auth_status_provider.dart';
 import '../api/auth_with_google.dart';
 
@@ -34,6 +36,9 @@ class AuthenticationStateCubit extends Cubit<AuthenticationState> {
   final AuthWithGoogle _signInWithGoogle;
 
   Future<void> _init() async {
+    getIt<GoogleSignIn>().currentUser?.clearAuthCache();
+    getIt<GoogleSignIn>().signOut();
+
     emit(state.copyWith(isSignedIn: SimpleDataState.loading()));
 
     final authStatus = await _authStatusProvider.get();
@@ -47,5 +52,7 @@ class AuthenticationStateCubit extends Cubit<AuthenticationState> {
     final auth = await signInResult?.authentication;
 
     log(signInResult.toString());
+    log('accessToken = ${auth?.accessToken ?? ''}');
+    log('idToken = ${auth?.idToken ?? ''}');
   }
 }

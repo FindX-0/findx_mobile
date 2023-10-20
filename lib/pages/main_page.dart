@@ -19,14 +19,6 @@ class MainPage extends StatelessWidget {
       child: const _Content(),
     );
   }
-
-  Future<void> _signIn() async {
-    final googleSignIn = GoogleSignIn();
-
-    final result = await googleSignIn.signIn();
-
-    log(result.toString());
-  }
 }
 
 class _Content extends StatelessWidget {
