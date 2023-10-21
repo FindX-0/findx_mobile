@@ -21,10 +21,7 @@ dependencies:
 
   # network/data
   freezed_annotation: ^2.2.0
-  json_annotation: ^4.8.1
-  json_serializable: ^6.7.0
-  dio: ^5.2.0+1
-  retrofit: ^4.0.1
+  dio: ^5.3.3
 
   # storage
   shared_preferences: ^2.1.2
@@ -43,12 +40,14 @@ dependencies:
   just_audio: ^0.9.34
   flutter_dotenv: ^5.1.0
   collection: ^1.17.0
-  synchronized: ^3.1.0
   flutter_udid: ^2.0.1
   url_launcher: ^6.1.11
 
   # authentication
   google_sign_in: ^6.1.5
+
+  app_client:
+    path: ./packages/app_client
 
   static_i18n:
     git:
@@ -68,10 +67,6 @@ dependencies:
     git:
       url: https://github.com/kume1a/flutter_common.git
       path: packages/common_models
-  common_network_components:
-    git:
-      url: https://github.com/kume1a/flutter_common.git
-      path: packages/common_network_components
 
 dev_dependencies:
   flutter_lints: ^2.0.1
@@ -80,7 +75,6 @@ dev_dependencies:
   flutter_native_splash: ^2.3.1
   flutter_launcher_icons: ^0.13.1
   injectable_generator: ^2.1.6
-  retrofit_generator: ^7.0.1
 
 flutter:
   uses-material-design: true

@@ -1,0 +1,46 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type AuthPayloadType {
+  accessToken: String!
+  hasEmailVerified: Boolean
+  refreshToken: String!
+}
+
+input EmailSignInInput {
+  email: String!
+  password: String!
+}
+
+input EmailSignUpInput {
+  email: String!
+  gender: Gender!
+  password: String!
+  userName: String!
+}
+
+enum Gender {
+  FEMALE
+  MALE
+  OTHER
+}
+
+input GoogleSignInInput {
+  accessToken: String!
+}
+
+type Mutation {
+  emailSignIn(input: EmailSignInInput!): AuthPayloadType!
+  emailSignUp(input: EmailSignUpInput!): AuthPayloadType!
+  googleSignIn(input: GoogleSignInInput!): AuthPayloadType!
+  refreshToken(input: RefreshTokenInput!): AuthPayloadType!
+}
+
+type Query {
+  sayHello: String!
+}
+
+input RefreshTokenInput {
+  refreshToken: String!
+}
