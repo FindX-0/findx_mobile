@@ -49,6 +49,9 @@ dependencies:
   app_client:
     path: ./packages/app_client
 
+  gql_types:
+    path: ./packages/gql_types
+
   static_i18n:
     git:
       url: https://github.com/kume1a/flutter_static_i18n.git

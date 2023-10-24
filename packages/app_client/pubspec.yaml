@@ -14,6 +14,9 @@ dependencies:
   flutter_secure_storage: ^8.0.0
   synchronized: ^3.1.0
 
+  gql_types:
+    path: ../gql_types
+
   common_network_components:
     git:
       url: https://github.com/kume1a/flutter_common.git
@@ -21,5 +24,4 @@ dependencies:
 
 dev_dependencies:
   flutter_lints: ^2.0.1
-  graphql_codegen: ^0.13.7
-  build_runner: ^2.4.5
+  freezed: ^2.3.5
