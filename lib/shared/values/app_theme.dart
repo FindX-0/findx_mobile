@@ -28,13 +28,13 @@ abstract final class AppTheme {
       onSecondaryContainer: Palette.onSecondaryContainer,
     ),
     switchTheme: SwitchThemeData(
-      thumbColor: MaterialStateProperty.resolveWith((Set<MaterialState> states) {
+      thumbColor: MaterialStateProperty.resolveWith((states) {
         if (states.contains(MaterialState.selected)) {
           return Palette.secondary;
         }
         return Palette.secondary.withOpacity(.8);
       }),
-      trackColor: MaterialStateProperty.resolveWith((Set<MaterialState> states) {
+      trackColor: MaterialStateProperty.resolveWith((states) {
         if (states.contains(MaterialState.selected)) {
           return Palette.secondary.withOpacity(.5);
         }
@@ -42,14 +42,14 @@ abstract final class AppTheme {
       }),
     ),
     tabBarTheme: const TabBarTheme(
-      labelColor: Palette.textPrimary,
-      unselectedLabelColor: Palette.secondaryElement,
+      labelColor: Palette.elPrimary,
+      unselectedLabelColor: Palette.elSecondary,
     ),
     appBarTheme: const AppBarTheme(
       backgroundColor: Palette.primaryContainer,
       elevation: 0,
       centerTitle: true,
-      titleTextStyle: TextStyle(fontSize: 14, color: Palette.textPrimary),
+      titleTextStyle: TextStyle(fontSize: 14, color: Palette.elPrimary),
     ),
     textSelectionTheme: const TextSelectionThemeData(
       cursorColor: Colors.black,
@@ -78,8 +78,8 @@ abstract final class AppTheme {
       isDense: true,
       constraints: const BoxConstraints(minHeight: 1),
       contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-      hintStyle: const TextStyle(fontSize: 14, color: Palette.secondaryElement),
-      labelStyle: const TextStyle(fontSize: 14, color: Palette.secondaryElement),
+      hintStyle: const TextStyle(fontSize: 14, color: Palette.elSecondary),
+      labelStyle: const TextStyle(fontSize: 14, color: Palette.elSecondary),
       alignLabelWithHint: true,
       errorMaxLines: 2,
     ),
@@ -92,40 +92,40 @@ abstract final class AppTheme {
     textButtonTheme: TextButtonThemeData(
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.resolveWith(
-          (Set<MaterialState> states) => states.contains(MaterialState.disabled)
+          (states) => states.contains(MaterialState.disabled)
               ? Palette.secondary.withOpacity(.85)
               : Palette.secondary,
         ),
         shape: MaterialStateProperty.all(_defaultButtonShape),
-        foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-        overlayColor: MaterialStateProperty.all<Color>(Palette.secondaryDark),
-        padding: MaterialStateProperty.all<EdgeInsets>(_defaultButtonPadding),
+        foregroundColor: MaterialStateProperty.all(Colors.white),
+        overlayColor: MaterialStateProperty.all(Palette.secondaryDark),
+        padding: MaterialStateProperty.all(_defaultButtonPadding),
         splashFactory: NoSplash.splashFactory,
       ),
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: Palette.secondaryContainer,
       selectedItemColor: Palette.secondary,
-      unselectedItemColor: Palette.secondaryElement,
-      selectedIconTheme: IconThemeData(color: Palette.secondary),
-      unselectedIconTheme: IconThemeData(color: Palette.secondaryElement),
+      unselectedItemColor: Palette.elSecondary,
+      selectedIconTheme: IconThemeData(color: Palette.elPrimary),
+      unselectedIconTheme: IconThemeData(color: Palette.elSecondary),
     ),
     checkboxTheme: CheckboxThemeData(
       fillColor: MaterialStateProperty.resolveWith(
-        (states) => states.contains(MaterialState.selected) ? Palette.secondary : Palette.secondaryElement,
+        (states) => states.contains(MaterialState.selected) ? Palette.secondary : Palette.elSecondary,
       ),
     ),
     radioTheme: RadioThemeData(
       fillColor: MaterialStateProperty.resolveWith(
-        (states) => states.contains(MaterialState.selected) ? Palette.secondary : Palette.secondaryElement,
+        (states) => states.contains(MaterialState.selected) ? Palette.secondary : Palette.elSecondary,
       ),
     ),
     extensions: <ThemeExtension<dynamic>>[
       AppThemeExtension(
-        secondaryElement: Palette.secondaryElement,
-        primaryText: Palette.textPrimary,
+        elSecondary: Palette.elSecondary,
+        primaryText: Palette.elPrimary,
         success: Palette.success,
-        secondaryElementOnDark: Palette.secondaryElementOnDark,
+        elSecondaryOnDark: Palette.secondaryElementOnDark,
       ),
     ],
   );

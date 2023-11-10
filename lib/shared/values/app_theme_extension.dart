@@ -6,27 +6,27 @@ extension ThemeDataX on ThemeData {
 
 class AppThemeExtension extends ThemeExtension<AppThemeExtension> {
   AppThemeExtension({
-    required this.secondaryElement,
-    required this.secondaryElementOnDark,
+    required this.elSecondary,
+    required this.elSecondaryOnDark,
     required this.primaryText,
     required this.success,
   });
 
-  final Color secondaryElement;
-  final Color secondaryElementOnDark;
+  final Color elSecondary;
+  final Color elSecondaryOnDark;
   final Color primaryText;
   final Color success;
 
   @override
   ThemeExtension<AppThemeExtension> copyWith({
-    Color? secondaryElement,
-    Color? secondaryElementOnDark,
+    Color? elSecondary,
+    Color? elSecondaryOnDark,
     Color? primaryText,
     Color? success,
   }) {
     return AppThemeExtension(
-      secondaryElement: secondaryElement ?? this.secondaryElement,
-      secondaryElementOnDark: secondaryElementOnDark ?? this.secondaryElementOnDark,
+      elSecondary: elSecondary ?? this.elSecondary,
+      elSecondaryOnDark: elSecondaryOnDark ?? this.elSecondaryOnDark,
       primaryText: primaryText ?? this.primaryText,
       success: success ?? this.success,
     );
@@ -39,9 +39,8 @@ class AppThemeExtension extends ThemeExtension<AppThemeExtension> {
     }
 
     return AppThemeExtension(
-      secondaryElement: Color.lerp(secondaryElement, other.secondaryElement, t) ?? secondaryElement,
-      secondaryElementOnDark:
-          Color.lerp(secondaryElementOnDark, other.secondaryElementOnDark, t) ?? secondaryElementOnDark,
+      elSecondary: Color.lerp(elSecondary, other.elSecondary, t) ?? elSecondary,
+      elSecondaryOnDark: Color.lerp(elSecondaryOnDark, other.elSecondaryOnDark, t) ?? elSecondaryOnDark,
       primaryText: Color.lerp(primaryText, other.primaryText, t) ?? primaryText,
       success: Color.lerp(success, other.success, t) ?? success,
     );

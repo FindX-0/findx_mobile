@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:global_navigator/global_navigator.dart';
 
-import '../shared/values/themes.dart';
+import '../shared/values/app_theme.dart';
 import 'i18n/app_locales.dart';
 import 'navigation/page_navigator.dart';
 import 'navigation/route_factory.dart';

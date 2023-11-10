@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import '../../pages/main_page.dart';
+import '../../pages/main/main_page.dart';
 import 'default_page_route.dart';
 import 'routes.dart';
 
