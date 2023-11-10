@@ -7,8 +7,8 @@ abstract final class AppTheme {
   AppTheme._();
 
   static final RoundedRectangleBorder _defaultButtonShape =
-      RoundedRectangleBorder(borderRadius: BorderRadius.circular(4));
-  static const EdgeInsets _defaultButtonPadding = EdgeInsets.symmetric(vertical: 10, horizontal: 12);
+      RoundedRectangleBorder(borderRadius: BorderRadius.circular(12));
+  static const EdgeInsets _defaultButtonPadding = EdgeInsets.symmetric(vertical: 10, horizontal: 24);
 
   static final BorderRadius _defaultInputBorderRadius = BorderRadius.circular(4);
 
@@ -90,17 +90,14 @@ abstract final class AppTheme {
       highlightColor: Colors.black12,
     ),
     textButtonTheme: TextButtonThemeData(
-      style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.resolveWith(
-          (states) => states.contains(MaterialState.disabled)
-              ? Palette.secondary.withOpacity(.85)
-              : Palette.secondary,
-        ),
-        shape: MaterialStateProperty.all(_defaultButtonShape),
-        foregroundColor: MaterialStateProperty.all(Colors.white),
-        overlayColor: MaterialStateProperty.all(Palette.secondaryDark),
-        padding: MaterialStateProperty.all(_defaultButtonPadding),
+      style: TextButton.styleFrom(
+        disabledBackgroundColor: Palette.secondary.withOpacity(.85),
+        backgroundColor: Palette.secondary,
+        shape: _defaultButtonShape,
+        padding: _defaultButtonPadding,
         splashFactory: NoSplash.splashFactory,
+        foregroundColor: Colors.white,
+        textStyle: const TextStyle(fontSize: 15, color: Colors.white),
       ),
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(

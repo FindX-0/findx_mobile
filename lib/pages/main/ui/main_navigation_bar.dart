@@ -27,13 +27,13 @@ class MainNavigationBar extends StatelessWidget {
             BottomNavigationBarItem(
               label: '',
               icon: SvgPicture.asset(
-                Assets.svgHome,
+                Assets.iconHome,
                 width: 24,
                 height: 24,
                 colorFilter: svgColor(theme.appThemeExtension?.elSecondary),
               ),
               activeIcon: SvgPicture.asset(
-                Assets.svgHome,
+                Assets.iconHome,
                 width: 24,
                 height: 24,
               ),
@@ -41,13 +41,13 @@ class MainNavigationBar extends StatelessWidget {
             BottomNavigationBarItem(
               label: '',
               icon: SvgPicture.asset(
-                Assets.svgMore,
+                Assets.iconMore,
                 width: 24,
                 height: 24,
                 colorFilter: svgColor(theme.appThemeExtension?.elSecondary),
               ),
               activeIcon: SvgPicture.asset(
-                Assets.svgMore,
+                Assets.iconMore,
                 width: 24,
                 height: 24,
               ),
