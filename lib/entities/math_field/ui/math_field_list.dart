@@ -2,6 +2,7 @@ import 'package:findx_dart_client/app_client.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../app/intl/app_localizations.dart';
 import '../../../shared/values/assets.dart';
 import '../state/math_field_list_state.dart';
 
@@ -34,6 +35,8 @@ class _Entry extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context);
+
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
       child: ClipRRect(
@@ -81,7 +84,7 @@ class _Entry extends StatelessWidget {
                       const SizedBox(width: 8),
                       TextButton(
                         onPressed: () {},
-                        child: const Text('Play'),
+                        child: Text(l.play),
                       ),
                     ],
                   ),

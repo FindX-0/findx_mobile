@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:global_navigator/global_navigator.dart';
 
 import '../shared/values/app_theme.dart';
-import 'i18n/app_locales.dart';
+import 'intl/app_localizations.dart';
 import 'navigation/page_navigator.dart';
 import 'navigation/route_factory.dart';
 import 'navigation/routes.dart';
@@ -14,9 +14,8 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Math',
-      locale: AppLocales.localeKa,
-      localizationsDelegates: AppLocales.localizationsDelegates,
-      supportedLocales: AppLocales.supportedLocales,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       initialRoute: Routes.root,
       navigatorObservers: [GNObserver()],
       onGenerateRoute: routeFactory,

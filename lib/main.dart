@@ -4,13 +4,10 @@ import 'package:common_models/common_models.dart';
 import 'package:flutter/material.dart';
 import 'package:global_navigator/global_navigator.dart';
 import 'package:injectable/injectable.dart';
-import 'package:static_i18n/static_i18n.dart';
 
 import 'app/app.dart';
 import 'app/configuration/global_http_overrides.dart';
 import 'app/di/register_dependencies.dart';
-import 'app/i18n/app_locales.dart';
-import 'app/i18n/translations.dart';
 import 'app/navigation/page_navigator.dart';
 import 'shared/app_environment.dart';
 import 'shared/util/ui/system_ui_manager.dart';
@@ -24,12 +21,6 @@ Future<void> main() async {
   await registerDependencies(Environment.dev);
 
   await getIt<SystemUiManager>().lockPortraitOrientation();
-
-  StaticI18N.initialize(
-    tr: getIt<AppTranslations>(),
-    locale: AppLocales.fallbackLocale,
-    fallbackLocale: AppLocales.fallbackLocale,
-  );
 
   GlobalNavigator.navigatorKey = navigatorKey;
 
