@@ -1,5 +1,6 @@
-import 'package:app_client/app_client.dart';
 import 'package:dio/dio.dart';
+import 'package:findx_dart_client/app_client.dart';
+import 'package:graphql/client.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../features/authentication/api/after_sign_out.dart';
@@ -8,13 +9,14 @@ import '../../../../shared/logger.dart';
 import '../../injection_token.dart';
 
 @module
-abstract class ApiClientGqlClientModule {
+abstract class AppNetworkClientModule {
   @lazySingleton
   @Named(InjectionToken.apiDio)
   Dio dio(
     AuthTokenStore authTokenStore,
     @Named(InjectionToken.noInterceptorDio) Dio noInterceptorDio,
     AfterSignOut afterSignOut,
+    RefreshTokenUsecase refreshTokenUsecase,
   ) {
     return NetworkClientFactory.createAuthenticatedDio(
       noInterceptorDio: noInterceptorDio,
@@ -22,12 +24,13 @@ abstract class ApiClientGqlClientModule {
       afterExit: afterSignOut.call,
       logPrint: logger.d,
       apiUrl: AppEnvironment.apiUrl,
+      refreshTokenUsecase: refreshTokenUsecase,
     );
   }
 
   @lazySingleton
   @Named(InjectionToken.noInterceptorDio)
-  Dio refreshTokenDio() {
+  Dio noInterceptorDio() {
     return NetworkClientFactory.createNoInterceptorDio(
       logPrint: logger.d,
       apiUrl: AppEnvironment.apiUrl,
@@ -35,12 +38,24 @@ abstract class ApiClientGqlClientModule {
   }
 
   @lazySingleton
-  GqlApiClient gqlApiClient(
+  GraphQLClient gqlClient(
     @Named(InjectionToken.apiDio) Dio dio,
   ) {
-    return NetworkClientFactory.createGqlApiClient(
+    return NetworkClientFactory.createGqlClient(
       dio: dio,
       apiUrl: AppEnvironment.apiUrl,
+    );
+  }
+
+  @lazySingleton
+  SocketInstanceProvider socketInstanceProvider(
+    AuthTokenStore authTokenStore,
+    ValidateAuthTokenUsecase validateAuthTokenUsecase,
+  ) {
+    return SocketInstanceProviderImpl(
+      authTokenStore,
+      validateAuthTokenUsecase,
+      AppEnvironment.wsUrl,
     );
   }
 }
