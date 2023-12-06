@@ -17,4 +17,14 @@ abstract class AppClientAuthenticationModule {
   RefreshTokenUsecase refreshTokenUsecase(@Named(InjectionToken.noInterceptorDio) Dio dio) {
     return RefreshTokenUsecaseImpl(dio, AppEnvironment.apiUrl);
   }
+
+  @lazySingleton
+  ValidateAuthTokenUsecase validateAuthTokenUsecase(
+    @Named(InjectionToken.noInterceptorDio) Dio dio,
+  ) {
+    return ValidateAuthTokenUsecaseImpl(
+      dio,
+      AppEnvironment.apiUrl,
+    );
+  }
 }
