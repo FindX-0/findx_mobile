@@ -5,6 +5,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
+import 'logger.dart';
+
 enum BuildFlavor {
   development,
   production;
@@ -29,17 +31,17 @@ class AppEnvironment {
 
     const envFileName = '.env.$environment';
 
-    log('Loading environment: $envFileName');
+    logger.i('Loading environment: $envFileName');
 
     final localEnv = await _DotEnvLoader.load('.env.local');
 
     if (localEnv.isNotEmpty) {
-      log('Merging env with local $localEnv');
+      logger.i('Merging env with local $localEnv');
     }
 
     await dotenv.load(fileName: envFileName, mergeWith: localEnv);
 
-    log('loaded env ${dotenv.env}');
+    logger.i('loaded env ${dotenv.env}');
   }
 
   static String get apiUrl => dotenv.get('API_URL');
