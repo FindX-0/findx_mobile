@@ -47,8 +47,7 @@ dependencies:
 
   findx_dart_client:
     git:
-      url: git@github.com:FindX-0/findx_dart_client.git
-
+      url: https://github.com/FindX-0/findx_dart_client.git
   global_navigator:
     git:
       url: https://github.com/kume1a/flutter_global_navigator.git

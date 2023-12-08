@@ -30,8 +30,8 @@ packages:
     description:
       path: "packages/app_client"
       ref: HEAD
-      resolved-ref: "2a97a2e7b8c82f9c926ea57d93cb6f387713fcfd"
-      url: "git@github.com:FindX-0/findx_dart_client.git"
+      resolved-ref: "8525b0d93a82e25433935f59abb261ec1b350f18"
+      url: "https://github.com/FindX-0/findx_dart_client.git"
     source: git
     version: "0.0.1"
   archive:
@@ -299,8 +299,8 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "2a97a2e7b8c82f9c926ea57d93cb6f387713fcfd"
-      url: "git@github.com:FindX-0/findx_dart_client.git"
+      resolved-ref: "8525b0d93a82e25433935f59abb261ec1b350f18"
+      url: "https://github.com/FindX-0/findx_dart_client.git"
     source: git
     version: "0.0.1"
   fixnum:
@@ -604,8 +604,8 @@ packages:
     description:
       path: "packages/gql_types"
       ref: HEAD
-      resolved-ref: "2a97a2e7b8c82f9c926ea57d93cb6f387713fcfd"
-      url: "git@github.com:FindX-0/findx_dart_client.git"
+      resolved-ref: "8525b0d93a82e25433935f59abb261ec1b350f18"
+      url: "https://github.com/FindX-0/findx_dart_client.git"
     source: git
     version: "1.0.0"
   graphql:
