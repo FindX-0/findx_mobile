@@ -1,5 +1,5 @@
 import 'dart:math';
 
-const int kInvalidId = -1;
+const String kInvalidId = 'invalid';
 
 final Random random = Random();
