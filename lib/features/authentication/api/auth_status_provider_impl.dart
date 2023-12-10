@@ -1,16 +1,18 @@
-import 'package:google_sign_in/google_sign_in.dart';
+import 'package:findx_dart_client/app_client.dart';
 import 'package:injectable/injectable.dart';
 
 import 'auth_status_provider.dart';
 
 @LazySingleton(as: AuthStatusProvider)
 class AuthStatusProviderImpl implements AuthStatusProvider {
-  AuthStatusProviderImpl(this._googleSignIn);
+  AuthStatusProviderImpl(
+    this._authTokenStore,
+  );
 
-  final GoogleSignIn _googleSignIn;
+  final AuthTokenStore _authTokenStore;
 
   @override
   Future<bool> get() {
-    return _googleSignIn.isSignedIn();
+    return _authTokenStore.hasRefreshToken();
   }
 }

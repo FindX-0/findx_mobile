@@ -1,6 +1,8 @@
 import 'package:app_client/app_client.dart';
 import 'package:dio/dio.dart';
+import 'package:findx_dart_client/app_client.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:graphql/client.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../shared/app_environment.dart';
@@ -26,5 +28,10 @@ abstract class AppClientAuthenticationModule {
       dio,
       AppEnvironment.apiUrl,
     );
+  }
+
+  @lazySingleton
+  AuthenticationFacade authenticationFacade(GraphQLClient client) {
+    return ApiAuthenticationFacade(client);
   }
 }
