@@ -1,4 +1,9 @@
 {
   "@@locale": "en",
-  "play": "Play"
+  "play": "Play",
+  "error": "Error",
+  "notification": "Notification",
+  "notImplemented": "Not implemented",
+  "networkError": "Network error",
+  "unknownError": "Unknown error"
 }

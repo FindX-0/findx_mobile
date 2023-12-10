@@ -83,7 +83,7 @@ class _Entry extends StatelessWidget {
                       ),
                       const SizedBox(width: 8),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () => context.mathFieldListCubit.onPlayPressed(mathField),
                         child: Text(l.play),
                       ),
                     ],

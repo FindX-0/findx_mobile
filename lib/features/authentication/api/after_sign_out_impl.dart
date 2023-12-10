@@ -7,12 +7,15 @@ import 'after_sign_out.dart';
 class AfterSignOutImpl implements AfterSignOut {
   AfterSignOutImpl(
     this._socketInstanceProvider,
+    this._authTokenStore,
   );
 
   final SocketInstanceProvider _socketInstanceProvider;
+  final AuthTokenStore _authTokenStore;
 
   @override
   Future<void> call() async {
     await _socketInstanceProvider.dispose();
+    await _authTokenStore.clear();
   }
 }
