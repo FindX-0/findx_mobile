@@ -1,4 +1,3 @@
-import 'package:app_client/app_client.dart';
 import 'package:dio/dio.dart';
 import 'package:findx_dart_client/app_client.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';

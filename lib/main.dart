@@ -9,6 +9,7 @@ import 'app/app.dart';
 import 'app/configuration/global_http_overrides.dart';
 import 'app/di/register_dependencies.dart';
 import 'app/navigation/page_navigator.dart';
+import 'features/server_time/api/get_server_time.dart';
 import 'shared/app_environment.dart';
 import 'shared/util/ui/system_ui_manager.dart';
 
@@ -29,6 +30,8 @@ Future<void> main() async {
   VVOConfig.simpleContent.maxLength = 4095;
 
   HttpOverrides.global = GlobalHttpOverrides();
+
+  getIt<GetServerTime>().call(); // precache server time
 
   runApp(const App());
 }
