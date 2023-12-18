@@ -19,7 +19,7 @@ class Palette {
   static const Color iconPrimary = Color(0xFF212121);
   static const Color iconSecondary = Color(0xFFBABABA);
   static const Color secondaryHeaderColor = Color(0xFf8F8E93);
-  static const Color primaryContainer = Color(0xFFF1F1F1);
+  static const Color primaryContainer = Color(0xFFF1F8FB);
   static const Color primaryContainerLight = Color(0xFFF8FAFE);
   static const Color secondaryContainer = Color(0xFFE3E6F3);
   static const Color onSecondary = Colors.white;
