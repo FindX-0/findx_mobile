@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+import '../../pages/dev_page.dart';
 import '../../pages/main/main_page.dart';
 import '../../pages/match_page.dart';
 import '../../pages/matchmaking_page.dart';
@@ -13,8 +14,16 @@ Route<dynamic> routeFactory(RouteSettings settings) {
     Routes.main => _createMainPageRoute(settings),
     Routes.matchmaking => _createMatchmakingPageRoute(settings),
     Routes.match => _createMatchPageRoute(settings),
+    Routes.dev => _createDevPageRoute(settings),
     _ => throw Exception('route ${settings.name} is not supported'),
   };
+}
+
+Route<dynamic> _createDevPageRoute(RouteSettings settings) {
+  return DefaultPageRoute(
+    settings: settings,
+    builder: (_) => const DevPage(),
+  );
 }
 
 Route<dynamic> _createMatchPageRoute(RouteSettings settings) {

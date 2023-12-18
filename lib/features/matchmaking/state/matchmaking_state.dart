@@ -109,7 +109,7 @@ class MatchmakingCubit extends Cubit<MatchmakingState> {
     if (ticket.state == TicketState.completed && ticket.matchId != null) {
       final args = MatchPageArgs(matchId: ticket.matchId!);
 
-      _pageNavigator.toMatchPage(args);
+      _pageNavigator.toMatch(args);
       return;
     }
 

@@ -16,7 +16,11 @@ class PageNavigator {
     GlobalNavigator.pushNamed(Routes.matchmaking, arguments: args);
   }
 
-  void toMatchPage(MatchPageArgs args) {
+  void toMatch(MatchPageArgs args) {
     GlobalNavigator.pushNamed(Routes.match, arguments: args);
+  }
+
+  void toDev() {
+    GlobalNavigator.pushNamed(Routes.dev);
   }
 }
