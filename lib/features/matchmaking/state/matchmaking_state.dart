@@ -115,12 +115,20 @@ class MatchmakingCubit extends Cubit<MatchmakingState> {
 
     if (ticket.state == TicketState.cancelled) {
       // TODO handle cancelled ticket
+      _toastNotifier.notify(
+        message: (l) => l.ticketCancelled,
+        title: (l) => l.notification,
+      );
       _pageNavigator.pop();
       return;
     }
 
     if (ticket.state == TicketState.expired) {
       // TODO handle expired ticket
+      _toastNotifier.notify(
+        message: (l) => l.ticketExpired,
+        title: (l) => l.notification,
+      );
       _pageNavigator.pop();
       return;
     }

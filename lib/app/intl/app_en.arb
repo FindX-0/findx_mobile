@@ -5,5 +5,7 @@
   "notification": "Notification",
   "notImplemented": "Not implemented",
   "networkError": "Network error",
-  "unknownError": "Unknown error"
+  "unknownError": "Unknown error",
+  "ticketCancelled": "Ticket cancelled",
+  "ticketExpired": "Ticket expired"
 }
