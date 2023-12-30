@@ -37,7 +37,7 @@ extension MatchmakingCubitX on BuildContext {
 @injectable
 class MatchmakingCubit extends Cubit<MatchmakingState> {
   MatchmakingCubit(
-    this._ticketRemoteRepository,
+    this._matchmakingRemoteRepository,
     this._toastNotifier,
     this._ticketChangedChannel,
     this._pageNavigator,
@@ -48,7 +48,7 @@ class MatchmakingCubit extends Cubit<MatchmakingState> {
     _ticketChangedChannel.startListening();
   }
 
-  final TicketRemoteRepository _ticketRemoteRepository;
+  final MatchmakingRemoteRepository _matchmakingRemoteRepository;
   final ToastNotifier _toastNotifier;
   final TicketChangedChannel _ticketChangedChannel;
   final PageNavigator _pageNavigator;
@@ -92,7 +92,7 @@ class MatchmakingCubit extends Cubit<MatchmakingState> {
 
     emit(state.copyWith(enqueueTicketState: ActionState.executing()));
 
-    final enqueueTicketRes = await _ticketRemoteRepository.enqueueTicket(
+    final enqueueTicketRes = await _matchmakingRemoteRepository.enqueueTicket(
       mathFieldId: _mathFieldId!,
     );
 

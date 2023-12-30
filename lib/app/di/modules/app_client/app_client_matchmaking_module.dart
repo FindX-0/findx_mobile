@@ -5,7 +5,7 @@ import 'package:injectable/injectable.dart';
 @module
 abstract class AppClientMatchmakingModule {
   @lazySingleton
-  TicketRemoteRepository ticketRemoteRepository(GraphQLClient client) {
-    return ApiTicketRemoteRepository(client);
+  MatchmakingRemoteRepository ticketRemoteRepository(GraphQLClient client) {
+    return ApiMatchmakingRemoteRepository(client);
   }
 }

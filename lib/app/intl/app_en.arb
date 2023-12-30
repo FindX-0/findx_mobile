@@ -7,5 +7,6 @@
   "networkError": "Network error",
   "unknownError": "Unknown error",
   "ticketCancelled": "Ticket cancelled",
-  "ticketExpired": "Ticket expired"
+  "ticketExpired": "Ticket expired",
+  "couldnotSubmitAnswer": "Couldn't submit answer"
 }
