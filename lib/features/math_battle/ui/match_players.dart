@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../state/math_battle_state.dart';
 
@@ -68,31 +69,31 @@ class _PlayerContainer extends StatelessWidget {
     final children = [
       CircleAvatar(
         backgroundColor: theme.colorScheme.primary,
-        radius: 15,
+        radius: 15.r,
       ),
-      const SizedBox(width: 5),
+      SizedBox(width: 5.w),
       Expanded(
         child: Text(
           username,
           maxLines: 1,
           textAlign: reverse ? TextAlign.right : null,
           overflow: TextOverflow.ellipsis,
-          style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+          style: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w600),
         ),
       ),
-      const SizedBox(width: 6),
+      SizedBox(width: 6.w),
       Text(
         score,
-        style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+        style: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w600),
       ),
     ];
 
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(15.r),
         color: theme.colorScheme.primaryContainer,
       ),
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+      padding: EdgeInsets.symmetric(horizontal: 10.r, vertical: 6.r),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: reverse ? children.reversed.toList() : children,

@@ -3,6 +3,7 @@ import 'package:findx_dart_client/app_client.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_math_fork/flutter_math.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../shared/util/assemble_media_url.dart';
 import '../state/math_battle_state.dart';
@@ -31,7 +32,7 @@ class MatchMathProblemImage extends StatelessWidget {
           2 => Row(
               children: [
                 _image(theme, images[0]),
-                const SizedBox(width: 16),
+                SizedBox(width: 16.w),
                 _image(theme, images[1]),
               ],
             ),
@@ -42,7 +43,7 @@ class MatchMathProblemImage extends StatelessWidget {
               itemBuilder: (_, index) => _image(
                 theme,
                 images[index],
-                width: 200,
+                width: 200.w,
               ),
             ),
         };
@@ -64,7 +65,7 @@ class MatchMathProblemImage extends StatelessWidget {
       url: assembleResourceUrl(mediaFile.path),
       width: width,
       placeholderColor: theme.colorScheme.secondaryContainer,
-      borderRadius: BorderRadius.circular(16),
+      borderRadius: BorderRadius.circular(16.r),
     );
   }
 }
@@ -86,12 +87,12 @@ class MatchMathProblemTexContainer extends StatelessWidget {
         final tex = state.currentMathProblem!.tex!;
 
         return Padding(
-          padding: const EdgeInsets.only(top: 16),
+          padding: EdgeInsets.only(top: 16.r),
           child: Wrap(
             alignment: WrapAlignment.center,
             children: Math.tex(
               tex,
-              textStyle: const TextStyle(fontSize: 20),
+              textStyle: TextStyle(fontSize: 20.sp),
             ).texBreak().parts,
           ),
         );
@@ -113,11 +114,11 @@ class MatchMathProblemText extends StatelessWidget {
         }
 
         return Padding(
-          padding: const EdgeInsets.only(top: 32, bottom: 8),
+          padding: EdgeInsets.only(top: 32.r, bottom: 8.r),
           child: Text(
             state.currentMathProblem!.text!,
             textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 20),
+            style: TextStyle(fontSize: 20.sp),
           ),
         );
       },
@@ -160,17 +161,17 @@ class _MathProblemAnswer extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Container(
-      margin: const EdgeInsets.only(bottom: 8),
-      padding: const EdgeInsets.all(16),
+      margin: EdgeInsets.only(bottom: 8.r),
+      padding: EdgeInsets.all(16.r),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(12.r),
         color: theme.colorScheme.secondaryContainer,
       ),
       alignment: Alignment.center,
       child: Math.tex(
         tex,
         mathStyle: MathStyle.textCramped,
-        textStyle: const TextStyle(fontSize: 20),
+        textStyle: TextStyle(fontSize: 20.sp),
       ),
     );
   }

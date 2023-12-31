@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MatchTimer extends StatelessWidget {
   const MatchTimer({super.key});
@@ -11,9 +12,9 @@ class MatchTimer extends StatelessWidget {
         border: Border.all(),
         borderRadius: BorderRadius.circular(6),
       ),
-      child: const Text(
+      child: Text(
         '01:24',
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+        style: TextStyle(fontSize: 24.sp, fontWeight: FontWeight.w500),
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:global_navigator/global_navigator.dart';
 
 import '../shared/values/app_theme.dart';
@@ -12,16 +13,22 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Math',
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
-      initialRoute: Routes.root,
-      navigatorObservers: [GNObserver()],
-      onGenerateRoute: routeFactory,
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.light,
-      navigatorKey: navigatorKey,
+    return ScreenUtilInit(
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (_, child) {
+        return MaterialApp(
+          title: 'Math',
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          initialRoute: Routes.root,
+          navigatorObservers: [GNObserver()],
+          onGenerateRoute: routeFactory,
+          debugShowCheckedModeBanner: false,
+          theme: AppTheme.light,
+          navigatorKey: navigatorKey,
+        );
+      },
     );
   }
 }
