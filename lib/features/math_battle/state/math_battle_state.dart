@@ -2,6 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:common_models/common_models.dart';
 import 'package:common_utilities/common_utilities.dart';
 import 'package:findx_dart_client/app_client.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -35,6 +36,10 @@ class MathBattleState with _$MathBattleState {
         currentMathProblemIndex: 0,
         mathProblems: SimpleDataState.idle(),
       );
+}
+
+extension MathBattleCubitX on BuildContext {
+  MathBattleCubit get mathBattleCubit => read<MathBattleCubit>();
 }
 
 @injectable

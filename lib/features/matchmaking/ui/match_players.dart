@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../math_battle/state/math_battle_state.dart';
 
 class MatchPlayers extends StatelessWidget {
   const MatchPlayers({super.key});
@@ -12,19 +15,32 @@ class MatchPlayers extends StatelessWidget {
         return Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Expanded(
-              child: _PlayerContainer(
-                reverse: false,
-                username: 'My username',
-                score: '12',
+            Expanded(
+              child: BlocBuilder<MathBattleCubit, MathBattleState>(
+                buildWhen: (previous, current) =>
+                    previous.authUser != current.authUser || previous.authUserScore != current.authUserScore,
+                builder: (_, state) {
+                  return _PlayerContainer(
+                    reverse: false,
+                    username: state.authUser.getOrNull?.userName ?? '',
+                    score: state.authUserScore.toString(),
+                  );
+                },
               ),
             ),
             SizedBox(width: spacing * 2),
-            const Expanded(
-              child: _PlayerContainer(
-                reverse: true,
-                username: 'Opponent',
-                score: '10',
+            Expanded(
+              child: BlocBuilder<MathBattleCubit, MathBattleState>(
+                buildWhen: (previous, current) =>
+                    previous.opponentUser != current.opponentUser ||
+                    previous.opponentUserScore != current.opponentUserScore,
+                builder: (_, state) {
+                  return _PlayerContainer(
+                    reverse: true,
+                    username: state.opponentUser.getOrNull?.userName ?? '',
+                    score: state.opponentUserScore.toString(),
+                  );
+                },
               ),
             ),
           ],

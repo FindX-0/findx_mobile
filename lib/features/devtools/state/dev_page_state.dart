@@ -5,7 +5,6 @@ import 'package:injectable/injectable.dart';
 
 import '../../../app/navigation/page_navigator.dart';
 import '../../../pages/match_page.dart';
-import '../../../shared/values/constants.dart';
 
 extension DevPageCubitX on BuildContext {
   DevPageCubit get devPageCubit => read<DevPageCubit>();
@@ -20,7 +19,7 @@ class DevPageCubit extends Cubit<Unit> {
   final PageNavigator _pageNavigator;
 
   void onToMatchPagePressed() {
-    final args = MatchPageArgs(matchId: kInvalidId);
+    final args = MatchPageArgs(matchId: '1');
 
     _pageNavigator.toMatch(args);
   }

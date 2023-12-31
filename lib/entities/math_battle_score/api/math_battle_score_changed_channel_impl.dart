@@ -8,7 +8,7 @@ import '../model/math_battle_score_changed_dto.dart';
 import '../util/math_battle_score_changed_mapper.dart';
 import 'math_battle_score_changed_channel.dart';
 
-@LazySingleton(as: MathBattleScoreChangedChannel)
+@Injectable(as: MathBattleScoreChangedChannel)
 class MathBattleScoreChangedChannelImpl extends MathBattleScoreChangedChannel {
   MathBattleScoreChangedChannelImpl(
     super.socketInstanceProvider,
