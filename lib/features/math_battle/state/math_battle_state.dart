@@ -1,10 +1,14 @@
+import 'package:collection/collection.dart';
 import 'package:common_models/common_models.dart';
+import 'package:common_utilities/common_utilities.dart';
 import 'package:findx_dart_client/app_client.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../entities/math_battle_score/api/math_battle_score_changed_channel.dart';
+import '../../../entities/math_battle_score/model/math_battle_score_changed.dart';
 import '../../../shared/logger.dart';
 import '../../../shared/ui/toast/toast_notifier.dart';
 import '../../authentication/api/auth_user_info_provider.dart';
@@ -16,6 +20,8 @@ class MathBattleState with _$MathBattleState {
   const factory MathBattleState({
     required SimpleDataState<User> authUser,
     required SimpleDataState<User> opponentUser,
+    required int authUserScore,
+    required int opponentUserScore,
     required SimpleDataState<List<GetMathBattleDataMathProblemItem>> mathProblems,
     required int currentMathProblemIndex,
     GetMathBattleDataMathProblemItem? currentMathProblem,
@@ -24,6 +30,8 @@ class MathBattleState with _$MathBattleState {
   factory MathBattleState.initial() => MathBattleState(
         authUser: SimpleDataState.idle(),
         opponentUser: SimpleDataState.idle(),
+        authUserScore: 0,
+        opponentUserScore: 0,
         currentMathProblemIndex: 0,
         mathProblems: SimpleDataState.idle(),
       );
@@ -35,22 +43,35 @@ class MathBattleCubit extends Cubit<MathBattleState> {
     this._mathBattleRemoteRepository,
     this._matchmakingRemoteRepository,
     this._authUserInfoProvider,
+    this._mathBattleScoreChangedChannel,
     this._toastNotifier,
   ) : super(MathBattleState.initial());
 
   final MathBattleRemoteRepository _mathBattleRemoteRepository;
   final MatchmakingRemoteRepository _matchmakingRemoteRepository;
   final AuthUserInfoProvider _authUserInfoProvider;
+  final MathBattleScoreChangedChannel _mathBattleScoreChangedChannel;
   final ToastNotifier _toastNotifier;
 
   String? _matchId;
+
+  final _subscriptions = SubscriptionComposite();
 
   Future<void> init({
     required String matchId,
   }) async {
     _matchId = matchId;
 
+    _initChannelListeners();
+
     await _fetchMathBattleData();
+  }
+
+  @override
+  Future<void> close() async {
+    await _subscriptions.closeAll();
+
+    return super.close();
   }
 
   Future<void> submitAnswer(String answer) async {
@@ -135,11 +156,43 @@ class MathBattleCubit extends Cubit<MathBattleState> {
     );
   }
 
+  void _initChannelListeners() {
+    _subscriptions.add(
+      _mathBattleScoreChangedChannel.events.listen(_onMathBattleScoreChanged),
+    );
+  }
+
   void _emitDataFailures() {
     emit(state.copyWith(
       mathProblems: SimpleDataState.failure(),
       authUser: SimpleDataState.failure(),
       opponentUser: SimpleDataState.failure(),
+    ));
+  }
+
+  Future<void> _onMathBattleScoreChanged(MathBattleScoreChanged payload) async {
+    if (_matchId != payload.matchId) {
+      logger.wtf("_onMathBattleScoreChanged, matchIds don't match");
+      return;
+    }
+
+    final authUserId = await _authUserInfoProvider.getId();
+    if (authUserId == null) {
+      logger.wtf('_onMathBattleScoreChanged, authUserId is null');
+      return;
+    }
+
+    final opponentUserScore = payload.scores.firstWhereOrNull((e) => e.userId != authUserId);
+    final authUserScore = payload.scores.firstWhereOrNull((element) => element.userId == authUserId);
+
+    if (opponentUserScore == null || authUserScore == null) {
+      logger.w('_onMathBattleScoreChanged, opponent user score or auth user score is null');
+      return;
+    }
+
+    emit(state.copyWith(
+      authUserScore: authUserScore.score,
+      opponentUserScore: opponentUserScore.score,
     ));
   }
 }
