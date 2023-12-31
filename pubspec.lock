@@ -199,7 +199,7 @@ packages:
     description:
       path: "packages/common_models"
       ref: HEAD
-      resolved-ref: "25c7ae33a6f59c6b1ec890baa8c18b915a788b1f"
+      resolved-ref: "6be7efc01d09266c5293685294fb9ab126b7692b"
       url: "https://github.com/kume1a/flutter_common.git"
     source: git
     version: "0.0.4"
@@ -208,7 +208,7 @@ packages:
     description:
       path: "packages/common_network_components"
       ref: HEAD
-      resolved-ref: "25c7ae33a6f59c6b1ec890baa8c18b915a788b1f"
+      resolved-ref: "6be7efc01d09266c5293685294fb9ab126b7692b"
       url: "https://github.com/kume1a/flutter_common.git"
     source: git
     version: "0.0.7"
@@ -217,7 +217,7 @@ packages:
     description:
       path: "packages/common_utilities"
       ref: HEAD
-      resolved-ref: "25c7ae33a6f59c6b1ec890baa8c18b915a788b1f"
+      resolved-ref: "6be7efc01d09266c5293685294fb9ab126b7692b"
       url: "https://github.com/kume1a/flutter_common.git"
     source: git
     version: "0.0.1"
@@ -226,7 +226,7 @@ packages:
     description:
       path: "packages/common_widgets"
       ref: HEAD
-      resolved-ref: "25c7ae33a6f59c6b1ec890baa8c18b915a788b1f"
+      resolved-ref: "6be7efc01d09266c5293685294fb9ab126b7692b"
       url: "https://github.com/kume1a/flutter_common.git"
     source: git
     version: "0.0.6"
@@ -373,10 +373,10 @@ packages:
     dependency: "direct dev"
     description:
       name: flutter_native_splash
-      sha256: "141b20f15a2c4fe6e33c49257ca1bc114fc5c500b04fcbc8d75016bb86af672f"
+      sha256: "9cdb5d9665dab5d098dc50feab74301c2c228cd02ca25c9b546ab572cebcd6af"
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.8"
+    version: "2.3.9"
   flutter_screenutil:
     dependency: "direct main"
     description:

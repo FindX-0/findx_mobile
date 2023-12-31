@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../app/di/register_dependencies.dart';
+import '../app/intl/app_localizations.dart';
 import '../features/math_battle/state/math_battle_state.dart';
 import '../features/math_battle/ui/match_math_problem.dart';
 import '../features/math_battle/ui/match_players.dart';
@@ -42,29 +44,47 @@ class _Content extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    final l = AppLocalizations.of(context);
+
+    return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Align(child: MatchTimer()),
-              SizedBox(height: 8),
-              MatchPlayers(),
-              SizedBox(height: 8),
-              Expanded(
-                child: CustomScrollView(
-                  slivers: [
-                    SliverToBoxAdapter(child: MatchMathProblemImage()),
-                    SliverToBoxAdapter(child: MatchMathProblemTexContainer()),
-                    SliverToBoxAdapter(child: MatchMathProblemText()),
-                    SliverAlignBottom(
-                      padding: EdgeInsets.only(top: 16, bottom: 16),
-                      child: MatchMathProblemAnswers(),
+              const Align(child: MatchTimer()),
+              const SizedBox(height: 8),
+              const MatchPlayers(),
+              const SizedBox(height: 8),
+              BlocBuilder<MathBattleCubit, MathBattleState>(
+                builder: (context, state) {
+                  if (state.noMoreMathProblems) {
+                    return Center(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 16.r, vertical: 32.sp),
+                        child: Text(
+                          l.noMoreMathProblems,
+                          style: TextStyle(fontSize: 16.sp),
+                        ),
+                      ),
+                    );
+                  }
+
+                  return const Expanded(
+                    child: CustomScrollView(
+                      slivers: [
+                        SliverToBoxAdapter(child: MatchMathProblemImage()),
+                        SliverToBoxAdapter(child: MatchMathProblemTexContainer()),
+                        SliverToBoxAdapter(child: MatchMathProblemText()),
+                        SliverAlignBottom(
+                          padding: EdgeInsets.only(top: 16, bottom: 16),
+                          child: MatchMathProblemAnswers(),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  );
+                },
               ),
             ],
           ),

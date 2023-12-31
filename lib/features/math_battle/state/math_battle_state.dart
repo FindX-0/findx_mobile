@@ -25,6 +25,7 @@ class MathBattleState with _$MathBattleState {
     required int opponentUserScore,
     required SimpleDataState<List<GetMathBattleDataMathProblemItem>> mathProblems,
     required int currentMathProblemIndex,
+    required bool noMoreMathProblems,
     GetMathBattleDataMathProblemItem? currentMathProblem,
   }) = _MathBattleState;
 
@@ -35,6 +36,7 @@ class MathBattleState with _$MathBattleState {
         opponentUserScore: 0,
         currentMathProblemIndex: 0,
         mathProblems: SimpleDataState.idle(),
+        noMoreMathProblems: false,
       );
 }
 
@@ -102,9 +104,19 @@ class MathBattleCubit extends Cubit<MathBattleState> {
     }
 
     final nextMathProblemIndex = state.currentMathProblemIndex + 1;
-    final nextMathProblem = state.mathProblems.maybeWhen(
+    final mathProblemsCount = state.mathProblems.ifData(
+      (data) => data.length,
+      orElse: () => 0,
+    );
+
+    if (nextMathProblemIndex >= mathProblemsCount) {
+      emit(state.copyWith(noMoreMathProblems: true));
+      return;
+    }
+
+    final nextMathProblem = state.mathProblems.ifData(
+      (data) => data.elementAtOrNull(nextMathProblemIndex),
       orElse: () => null,
-      success: (data) => data[nextMathProblemIndex],
     );
 
     emit(state.copyWith(

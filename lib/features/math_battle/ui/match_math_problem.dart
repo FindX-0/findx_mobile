@@ -160,18 +160,21 @@ class _MathProblemAnswer extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Container(
-      margin: EdgeInsets.only(bottom: 8.r),
-      padding: EdgeInsets.all(16.r),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12.r),
-        color: theme.colorScheme.secondaryContainer,
-      ),
-      alignment: Alignment.center,
-      child: Math.tex(
-        tex,
-        mathStyle: MathStyle.textCramped,
-        textStyle: TextStyle(fontSize: 20.sp),
+    return GestureDetector(
+      onTap: () => context.mathBattleCubit.submitAnswer(tex),
+      child: Container(
+        margin: EdgeInsets.only(bottom: 8.r),
+        padding: EdgeInsets.all(16.r),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12.r),
+          color: theme.colorScheme.secondaryContainer,
+        ),
+        alignment: Alignment.center,
+        child: Math.tex(
+          tex,
+          mathStyle: MathStyle.textCramped,
+          textStyle: TextStyle(fontSize: 20.sp),
+        ),
       ),
     );
   }
