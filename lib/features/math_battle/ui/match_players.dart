@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../math_battle/state/math_battle_state.dart';
+import '../state/math_battle_state.dart';
 
 class MatchPlayers extends StatelessWidget {
   const MatchPlayers({super.key});

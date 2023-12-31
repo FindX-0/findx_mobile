@@ -2,10 +2,10 @@ import 'package:common_widgets/common_widgets.dart';
 import 'package:findx_dart_client/app_client.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_tex/flutter_tex.dart';
+import 'package:flutter_math_fork/flutter_math.dart';
 
 import '../../../shared/util/assemble_media_url.dart';
-import '../../math_battle/state/math_battle_state.dart';
+import '../state/math_battle_state.dart';
 
 class MatchMathProblemImage extends StatelessWidget {
   const MatchMathProblemImage({super.key});
@@ -74,8 +74,6 @@ class MatchMathProblemTexContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return BlocBuilder<MathBattleCubit, MathBattleState>(
       buildWhen: (previous, current) => previous.currentMathProblem != current.currentMathProblem,
       builder: (context, state) {
@@ -85,22 +83,16 @@ class MatchMathProblemTexContainer extends StatelessWidget {
           return const SizedBox.shrink();
         }
 
-        return TeXView(
-          loadingWidgetBuilder: (_) => BlankContainer(
-            width: 100,
-            height: 24,
-            color: theme.colorScheme.secondaryContainer,
-          ),
-          child: TeXViewDocument(
-            state.currentMathProblem!.tex!,
-            style: TeXViewStyle(
-              contentColor: Colors.black,
-              padding: const TeXViewPadding.all(16),
-              textAlign: TeXViewTextAlign.center,
-              fontStyle: TeXViewFontStyle(
-                fontSize: 26,
-              ),
-            ),
+        final tex = state.currentMathProblem!.tex!;
+
+        return Padding(
+          padding: const EdgeInsets.only(top: 16),
+          child: Wrap(
+            alignment: WrapAlignment.center,
+            children: Math.tex(
+              tex,
+              textStyle: const TextStyle(fontSize: 20),
+            ).texBreak().parts,
           ),
         );
       },
@@ -121,7 +113,7 @@ class MatchMathProblemText extends StatelessWidget {
         }
 
         return Padding(
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.only(top: 32, bottom: 8),
           child: Text(
             state.currentMathProblem!.text!,
             textAlign: TextAlign.center,
@@ -168,28 +160,17 @@ class _MathProblemAnswer extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Container(
-      margin: const EdgeInsets.only(bottom: 5),
+      margin: const EdgeInsets.only(bottom: 8),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        color: theme.colorScheme.primaryContainer,
+        borderRadius: BorderRadius.circular(12),
+        color: theme.colorScheme.secondaryContainer,
       ),
-      child: TeXView(
-        child: TeXViewInkWell(
-          rippleEffect: false,
-          id: 'math_answer_$tex',
-          onTap: (id) => context.mathBattleCubit.submitAnswer(tex),
-          child: TeXViewDocument(
-            tex,
-            style: TeXViewStyle(
-              padding: const TeXViewPadding.only(top: 10, bottom: 10),
-              contentColor: Colors.black,
-              textAlign: TeXViewTextAlign.center,
-              fontStyle: TeXViewFontStyle(
-                fontSize: 20,
-              ),
-            ),
-          ),
-        ),
+      alignment: Alignment.center,
+      child: Math.tex(
+        tex,
+        mathStyle: MathStyle.textCramped,
+        textStyle: const TextStyle(fontSize: 20),
       ),
     );
   }

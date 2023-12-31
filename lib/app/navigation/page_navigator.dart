@@ -17,7 +17,7 @@ class PageNavigator {
   }
 
   void toMatch(MatchPageArgs args) {
-    GlobalNavigator.pushNamed(Routes.match, arguments: args);
+    GlobalNavigator.pushNamedAndRemoveUntil(Routes.match, Routes.main, arguments: args);
   }
 
   void toDev() {
