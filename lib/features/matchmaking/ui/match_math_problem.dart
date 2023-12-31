@@ -55,7 +55,6 @@ class MatchMathProblemAnswers extends StatelessWidget {
 
 class _MathProblemAnswer extends StatelessWidget {
   const _MathProblemAnswer({
-    super.key,
     required this.text,
   });
 
