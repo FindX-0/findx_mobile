@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../shared/util/format/duration.dart';
+import '../state/math_battle_state.dart';
 
 class MatchTimer extends StatelessWidget {
   const MatchTimer({super.key});
@@ -12,9 +16,16 @@ class MatchTimer extends StatelessWidget {
         border: Border.all(),
         borderRadius: BorderRadius.circular(6),
       ),
-      child: Text(
-        '01:24',
-        style: TextStyle(fontSize: 24.sp, fontWeight: FontWeight.w500),
+      child: BlocBuilder<MathBattleCubit, MathBattleState>(
+        buildWhen: (previous, current) => previous.matchEndsIn != current.matchEndsIn,
+        builder: (_, state) {
+          final matchEndsInMillis = state.matchEndsIn?.inMilliseconds ?? 0;
+
+          return Text(
+            formatDuration(matchEndsInMillis, format: DurationFormat.mmss),
+            style: TextStyle(fontSize: 24.sp, fontWeight: FontWeight.w500),
+          );
+        },
       ),
     );
   }

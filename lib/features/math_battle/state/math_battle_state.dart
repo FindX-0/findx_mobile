@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:collection/collection.dart';
 import 'package:common_models/common_models.dart';
 import 'package:common_utilities/common_utilities.dart';
@@ -8,11 +10,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../app/navigation/page_navigator.dart';
 import '../../../entities/math_battle_score/api/math_battle_score_changed_channel.dart';
 import '../../../entities/math_battle_score/model/math_battle_score_changed.dart';
+import '../../../pages/match_result_page.dart';
 import '../../../shared/logger.dart';
 import '../../../shared/ui/toast/toast_notifier.dart';
 import '../../authentication/api/auth_user_info_provider.dart';
+import '../../server_time/api/get_server_time.dart';
 
 part 'math_battle_state.freezed.dart';
 
@@ -27,6 +32,11 @@ class MathBattleState with _$MathBattleState {
     required int currentMathProblemIndex,
     required bool noMoreMathProblems,
     GetMathBattleDataMathProblemItem? currentMathProblem,
+    DateTime? matchEndsAt,
+    DateTime? matchStartsAt,
+    Duration? matchEndsIn,
+    Duration? countdownLeft,
+    required bool isCountdownFinished,
   }) = _MathBattleState;
 
   factory MathBattleState.initial() => MathBattleState(
@@ -37,6 +47,7 @@ class MathBattleState with _$MathBattleState {
         currentMathProblemIndex: 0,
         mathProblems: SimpleDataState.idle(),
         noMoreMathProblems: false,
+        isCountdownFinished: false,
       );
 }
 
@@ -51,16 +62,21 @@ class MathBattleCubit extends Cubit<MathBattleState> {
     this._matchmakingRemoteRepository,
     this._authUserInfoProvider,
     this._mathBattleScoreChangedChannel,
+    this._getServerTime,
     this._toastNotifier,
+    this._pageNavigator,
   ) : super(MathBattleState.initial());
 
   final MathBattleRemoteRepository _mathBattleRemoteRepository;
   final MatchmakingRemoteRepository _matchmakingRemoteRepository;
   final AuthUserInfoProvider _authUserInfoProvider;
   final MathBattleScoreChangedChannel _mathBattleScoreChangedChannel;
+  final GetServerTime _getServerTime;
   final ToastNotifier _toastNotifier;
+  final PageNavigator _pageNavigator;
 
   String? _matchId;
+  Timer? _timer;
 
   final _subscriptions = SubscriptionComposite();
 
@@ -77,6 +93,7 @@ class MathBattleCubit extends Cubit<MathBattleState> {
   @override
   Future<void> close() async {
     await _subscriptions.closeAll();
+    _timer?.cancel();
 
     return super.close();
   }
@@ -146,6 +163,8 @@ class MathBattleCubit extends Cubit<MathBattleState> {
       return;
     }
 
+    _initTimer(match.rightOrThrow);
+
     final opponentUserId = match.rightOrThrow.userIds.where((e) => e != authUserId).firstOrNull;
     if (opponentUserId == null) {
       logger.wtf('_fetchMathProblems, opponentUserId is null, returning');
@@ -176,6 +195,50 @@ class MathBattleCubit extends Cubit<MathBattleState> {
   void _initChannelListeners() {
     _subscriptions.add(
       _mathBattleScoreChangedChannel.events.listen(_onMathBattleScoreChanged),
+    );
+  }
+
+  void _initTimer(GetMatchByIdRes match) {
+    _timer?.cancel();
+    _timer = Timer.periodic(
+      const Duration(milliseconds: 250),
+      (_) async {
+        final serverTime = await _getServerTime();
+
+        final durationLeftTillStartAt = match.startAt.difference(serverTime);
+        final durationLeftTillEndAt = match.endAt.difference(serverTime);
+
+        // cases:
+        // * didn't pass startAt (isn't negative) -> null
+        // * did pass start at and didn't pass endAt -> duration of difference
+        // * else both are passed and set to Duration.zero
+        final matchEndsIn = !durationLeftTillStartAt.isNegative
+            ? null
+            : durationLeftTillStartAt.isNegative && !durationLeftTillEndAt.isNegative
+                ? durationLeftTillEndAt
+                : Duration.zero;
+
+        final countdownLeft = durationLeftTillStartAt.isNegative ? null : durationLeftTillStartAt;
+
+        emit(state.copyWith(
+          matchEndsIn: matchEndsIn,
+          countdownLeft: countdownLeft,
+          isCountdownFinished: durationLeftTillStartAt.isNegative,
+        ));
+
+        final matchEnded = durationLeftTillEndAt.isNegative || durationLeftTillEndAt == Duration.zero;
+        if (matchEnded) {
+          if (_matchId == null) {
+            logger.wtf("_matchId is null, cann't navigate to match result page");
+            return;
+          }
+
+          final args = MatchResultPageArgs(matchId: _matchId!);
+
+          _pageNavigator.toMatchResult(args);
+          _timer?.cancel();
+        }
+      },
     );
   }
 

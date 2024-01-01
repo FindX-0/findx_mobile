@@ -3,6 +3,7 @@ import 'package:global_navigator/global_navigator.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../pages/match_page.dart';
+import '../../pages/match_result_page.dart';
 import '../../pages/matchmaking_page.dart';
 import 'routes.dart';
 
@@ -17,9 +18,8 @@ class PageNavigator {
   }
 
   void toMatch(MatchPageArgs args) {
-    GlobalNavigator.pushNamedAndRemoveUntil(
+    GlobalNavigator.pushReplacementNamed(
       Routes.match,
-      Routes.main,
       arguments: args,
       allowLastDuplicate: false,
     );
@@ -27,5 +27,13 @@ class PageNavigator {
 
   void toDev() {
     GlobalNavigator.pushNamed(Routes.dev);
+  }
+
+  void toMatchResult(MatchResultPageArgs args) {
+    GlobalNavigator.pushReplacementNamed(
+      Routes.matchResult,
+      arguments: args,
+      allowLastDuplicate: false,
+    );
   }
 }

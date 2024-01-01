@@ -4,5 +4,6 @@ abstract class Routes {
   static const String main = 'main';
   static const String matchmaking = 'matchmaking';
   static const String match = 'match';
+  static const String matchResult = 'matchResult';
   static const String dev = 'dev';
 }
