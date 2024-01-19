@@ -27,7 +27,7 @@ Future<void> main() async {
 
   VVOConfig.name.minLength = 2;
   VVOConfig.verificationCode.length = 6;
-  VVOConfig.simpleContent.maxLength = 4095;
+  VVOConfig.requiredString.maxLength = 4095;
 
   HttpOverrides.global = GlobalHttpOverrides();
 

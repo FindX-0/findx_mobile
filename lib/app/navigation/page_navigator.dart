@@ -36,4 +36,8 @@ class PageNavigator {
       allowLastDuplicate: false,
     );
   }
+
+  void popTillMain() {
+    GlobalNavigator.popUntil((route) => route.isFirst);
+  }
 }

@@ -88,12 +88,9 @@ class MatchMathProblemTexContainer extends StatelessWidget {
 
         return Padding(
           padding: EdgeInsets.only(top: 16.r),
-          child: Wrap(
-            alignment: WrapAlignment.center,
-            children: Math.tex(
-              tex,
-              textStyle: TextStyle(fontSize: 20.sp),
-            ).texBreak().parts,
+          child: Math.tex(
+            tex,
+            textStyle: TextStyle(fontSize: 20.sp),
           ),
         );
       },

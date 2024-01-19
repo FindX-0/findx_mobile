@@ -8,7 +8,7 @@ import '../../../shared/util/device_id_provider.dart';
 import '../api/auth_status_provider.dart';
 import '../api/before_sign_in.dart';
 
-typedef DeviceSignInState = ActionState<SimpleActionFailure>;
+typedef DeviceSignInState = ActionState<ActionFailure>;
 
 extension DeviceSignInCubitX on BuildContext {
   DeviceSignInCubit get deviceSignInCubit => read<DeviceSignInCubit>();

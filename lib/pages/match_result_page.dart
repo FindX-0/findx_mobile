@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../app/di/register_dependencies.dart';
+import '../entities/math_battle_result/state/math_battle_result_state.dart';
+import '../entities/math_battle_result/ui/match_results.dart';
 
 class MatchResultPageArgs {
   MatchResultPageArgs({
@@ -18,24 +23,26 @@ class MatchResultPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _Content(args: args);
+    return BlocProvider(
+      create: (_) => getIt<MathBattleResultCubit>()
+        ..init(
+          MathBattleResultCubitArgs(
+            matchId: args.matchId,
+          ),
+        ),
+      child: const _Content(),
+    );
   }
 }
 
 class _Content extends StatelessWidget {
-  const _Content({
-    required this.args,
-  });
-
-  final MatchResultPageArgs args;
+  const _Content();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: SafeArea(
-        child: Center(
-          child: Text('Match results ${args.matchId}'),
-        ),
+        child: MatchResults(),
       ),
     );
   }

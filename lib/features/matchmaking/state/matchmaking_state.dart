@@ -21,7 +21,7 @@ part 'matchmaking_state.freezed.dart';
 class MatchmakingState with _$MatchmakingState {
   const factory MatchmakingState({
     required bool isMatchmakingPending,
-    required ActionState<SimpleActionFailure> enqueueTicketState,
+    required ActionState<ActionFailure> enqueueTicketState,
   }) = _MatchmakingState;
 
   factory MatchmakingState.initial() => MatchmakingState(
