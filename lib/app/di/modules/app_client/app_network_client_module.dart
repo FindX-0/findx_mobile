@@ -5,6 +5,7 @@ import 'package:injectable/injectable.dart';
 
 import '../../../../features/authentication/api/after_sign_out.dart';
 import '../../../../shared/app_environment.dart';
+import '../../../../shared/logger.dart';
 import '../../injection_token.dart';
 
 @module
@@ -18,7 +19,7 @@ abstract class AppNetworkClientModule {
     RefreshTokenUsecase refreshTokenUsecase,
   ) {
     return NetworkClientFactory.createAuthenticatedDio(
-      // logPrint: logger.d,
+      logPrint: logger.d,
       noInterceptorDio: noInterceptorDio,
       authTokenStore: authTokenStore,
       afterExit: afterSignOut.call,
@@ -31,7 +32,7 @@ abstract class AppNetworkClientModule {
   @Named(InjectionToken.noInterceptorDio)
   Dio noInterceptorDio() {
     return NetworkClientFactory.createNoInterceptorDio(
-      // logPrint: logger.d,
+      logPrint: logger.d,
       apiUrl: AppEnvironment.apiUrl,
     );
   }
