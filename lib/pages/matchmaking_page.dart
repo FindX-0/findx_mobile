@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../app/di/register_dependencies.dart';
 import '../features/matchmaking/state/matchmaking_state.dart';
+import '../features/matchmaking/ui/cancel_matchmaking_button.dart';
 
 class MatchmakingPageArgs {
   MatchmakingPageArgs({
@@ -34,21 +35,18 @@ class _Content extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: SafeArea(
         child: Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Text(
+              Text(
                 'Searching opponent...',
                 style: TextStyle(fontSize: 16),
               ),
-              const SizedBox(height: 80),
-              TextButton(
-                onPressed: context.matchmakingCubit.onCancelTicketPressed,
-                child: const Text('Cancel'),
-              ),
+              SizedBox(height: 80),
+              CancelMatchmakingButton(),
             ],
           ),
         ),

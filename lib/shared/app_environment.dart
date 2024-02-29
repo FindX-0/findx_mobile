@@ -51,6 +51,8 @@ class AppEnvironment {
   static String get googleAuthClientIdAndroid => dotenv.get('GOOGLE_AUTH_CLIENT_ID_ANDROID');
 
   static String get googleAuthClientIdIos => dotenv.get('GOOGLE_AUTH_CLIENT_ID_IOS');
+
+  static int get ticketEnqueueDelayMillis => int.parse(dotenv.get('TICKET_ENQUEUE_DELAY_MILLIS'));
 }
 
 class _DotEnvLoader {
