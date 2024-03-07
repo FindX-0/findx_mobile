@@ -29,11 +29,11 @@ class AppEnvironment {
   static Future<void> load() async {
     const environment = kDebugMode ? 'development' : 'production';
 
-    const envFileName = '.env.$environment';
+    const envFileName = './env/.env.$environment';
 
     logger.i('Loading environment: $envFileName');
 
-    final localEnv = await _DotEnvLoader.load('.env.local');
+    final localEnv = await _DotEnvLoader.load('./env/.env.local');
 
     if (localEnv.isNotEmpty) {
       logger.i('Merging env with local $localEnv');
