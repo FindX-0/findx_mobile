@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../app/di/register_dependencies.dart';
-import '../features/authentication/state/authentication_state.dart';
-import 'more/more_page_state.dart';
+import '../../app/di/register_dependencies.dart';
+import '../../features/authentication/state/authentication_state.dart';
+import 'more_page_state.dart';
 
 class MorePage extends StatelessWidget {
   const MorePage({super.key});

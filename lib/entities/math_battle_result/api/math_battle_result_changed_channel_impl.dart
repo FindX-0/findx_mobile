@@ -21,12 +21,12 @@ class MathBattleResultChangedChannelImpl extends MathBattleResultChangedChannel 
   String get event => GatewayEvent.mathBattleResultsChanged;
 
   @override
-  FutureOr<List<MathBattleResult>> map(dynamic event) {
+  FutureOr<List<MathBattleResult>> map(dynamic payload) {
     if (event is! List<dynamic>) {
       return [];
     }
 
-    return event
+    return payload
         .map((e) {
           if (e is! Map<String, dynamic>) {
             return null;

@@ -30,7 +30,7 @@ packages:
     description:
       path: "packages/app_client"
       ref: HEAD
-      resolved-ref: b2459fe51d5b3c09933ee64646c7bd32e6f5770f
+      resolved-ref: "3c50dbd23623f7f4a0b7e2fc8c389309d8cc4bcb"
       url: "https://github.com/FindX-0/findx_dart_client.git"
     source: git
     version: "0.0.1"
@@ -199,7 +199,7 @@ packages:
     description:
       path: "packages/common_models"
       ref: HEAD
-      resolved-ref: "354dc74a917fa76cd3b3d8e75b7fa5187c80a9f6"
+      resolved-ref: f893e70b43efc563b416f435ea82bd13eaf3276b
       url: "https://github.com/kume1a/flutter_common.git"
     source: git
     version: "0.0.4"
@@ -208,7 +208,7 @@ packages:
     description:
       path: "packages/common_network_components"
       ref: HEAD
-      resolved-ref: "354dc74a917fa76cd3b3d8e75b7fa5187c80a9f6"
+      resolved-ref: f893e70b43efc563b416f435ea82bd13eaf3276b
       url: "https://github.com/kume1a/flutter_common.git"
     source: git
     version: "0.0.7"
@@ -217,7 +217,7 @@ packages:
     description:
       path: "packages/common_utilities"
       ref: HEAD
-      resolved-ref: "354dc74a917fa76cd3b3d8e75b7fa5187c80a9f6"
+      resolved-ref: f893e70b43efc563b416f435ea82bd13eaf3276b
       url: "https://github.com/kume1a/flutter_common.git"
     source: git
     version: "0.0.1"
@@ -226,7 +226,7 @@ packages:
     description:
       path: "packages/common_widgets"
       ref: HEAD
-      resolved-ref: "354dc74a917fa76cd3b3d8e75b7fa5187c80a9f6"
+      resolved-ref: f893e70b43efc563b416f435ea82bd13eaf3276b
       url: "https://github.com/kume1a/flutter_common.git"
     source: git
     version: "0.0.6"
@@ -299,7 +299,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: b2459fe51d5b3c09933ee64646c7bd32e6f5770f
+      resolved-ref: "3c50dbd23623f7f4a0b7e2fc8c389309d8cc4bcb"
       url: "https://github.com/FindX-0/findx_dart_client.git"
     source: git
     version: "0.0.1"
@@ -507,10 +507,10 @@ packages:
     dependency: transitive
     description:
       name: google_identity_services_web
-      sha256: "972ff30eebf6a5eab28be3e1e47a45df087ed64d5aefdac0df47758ecdec5385"
+      sha256: "9482364c9f8b7bd36902572ebc3a7c2b5c8ee57a9c93e6eb5099c1a9ec5265d8"
       url: "https://pub.dev"
     source: hosted
-    version: "0.3.1"
+    version: "0.3.1+1"
   google_sign_in:
     dependency: "direct main"
     description:
@@ -555,18 +555,18 @@ packages:
     dependency: transitive
     description:
       name: gql
-      sha256: b54669d671e55d22fe0b5364ca4c4b2ea7c9563fd76f1b87a9527e14ff0865d6
+      sha256: afe032332ddfa69b79f1dea2ad7d95923d4993c1b269b224fc7bb3d17e32d33c
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.1-alpha+1708718049275"
+    version: "1.0.1-alpha+1709845491443"
   gql_dedupe_link:
     dependency: transitive
     description:
       name: gql_dedupe_link
-      sha256: d2f953708fbed3e3db64a9d1a675d45f63ff8211383f7234b4469a31ddca4ef7
+      sha256: "2971173c68623d5c43f5327ea899bd2ee64ce3461c1263f240b4bb6211f667be"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.4-alpha+1708718049359"
+    version: "2.0.4-alpha+1709845491527"
   gql_dio_link:
     dependency: transitive
     description:
@@ -603,10 +603,10 @@ packages:
     dependency: transitive
     description:
       name: gql_link
-      sha256: bafe346bae79bdabf8a0f1dd966cfafeca9ccbc2d660c8fa08e32f2ca7028a7a
+      sha256: "177500e250b3742d6d2673d57961e8413b6593dc6bd6a512c51865b6cf096f7e"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.1-alpha+1708718049290"
+    version: "1.0.1-alpha+1709845491457"
   gql_transform_link:
     dependency: transitive
     description:
@@ -620,7 +620,7 @@ packages:
     description:
       path: "packages/gql_types"
       ref: HEAD
-      resolved-ref: b2459fe51d5b3c09933ee64646c7bd32e6f5770f
+      resolved-ref: "3c50dbd23623f7f4a0b7e2fc8c389309d8cc4bcb"
       url: "https://github.com/FindX-0/findx_dart_client.git"
     source: git
     version: "1.0.0"
@@ -700,10 +700,10 @@ packages:
     dependency: "direct dev"
     description:
       name: injectable_generator
-      sha256: f9d3c05f0938403f79ad6c6d23ec8e37a7a05ad980b1bf9399493f3e41845788
+      sha256: "7fb573114f8bbdd169f7ae9b0bcd13f464e8170454c27be816d5a1bb39ac8086"
       url: "https://pub.dev"
     source: hosted
-    version: "2.4.1"
+    version: "2.4.2"
   intl:
     dependency: "direct main"
     description:
@@ -1345,10 +1345,10 @@ packages:
     dependency: transitive
     description:
       name: web
-      sha256: "1d9158c616048c38f712a6646e317a3426da10e884447626167240d45209cbad"
+      sha256: "97da13628db363c635202ad97068d47c5b8aa555808e7a9411963c533b449b27"
       url: "https://pub.dev"
     source: hosted
-    version: "0.5.0"
+    version: "0.5.1"
   web_socket_channel:
     dependency: transitive
     description:

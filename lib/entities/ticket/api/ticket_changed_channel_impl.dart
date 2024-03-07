@@ -21,9 +21,9 @@ class TicketChangedChannelImpl extends TicketChangedChannel {
   String get event => GatewayEvent.ticketChanged;
 
   @override
-  FutureOr<Ticket> map(dynamic event) {
+  FutureOr<Ticket> map(dynamic payload) {
     return _ticketMapper.dtoToModel(
-      TicketDto.fromJson(event as Map<String, dynamic>),
+      TicketDto.fromJson(payload as Map<String, dynamic>),
     );
   }
 }

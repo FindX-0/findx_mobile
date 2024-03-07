@@ -21,9 +21,9 @@ class MathBattleScoreChangedChannelImpl extends MathBattleScoreChangedChannel {
   String get event => GatewayEvent.mathBattleScoreChanged;
 
   @override
-  FutureOr<MathBattleScoreChanged> map(dynamic event) {
+  FutureOr<MathBattleScoreChanged> map(dynamic payload) {
     return _mathBattleScoreChangedMapper.dtoToModel(
-      MathBattleScoreChangedDto.fromJson(event as Map<String, dynamic>),
+      MathBattleScoreChangedDto.fromJson(payload as Map<String, dynamic>),
     );
   }
 }

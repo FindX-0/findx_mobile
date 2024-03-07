@@ -196,6 +196,7 @@ class MathBattleCubit extends Cubit<MathBattleState> {
     _subscriptions.add(
       _mathBattleScoreChangedChannel.events.listen(_onMathBattleScoreChanged),
     );
+    _mathBattleScoreChangedChannel.startListening();
   }
 
   void _initTimer(GetMatchByIdRes match) {
