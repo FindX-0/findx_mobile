@@ -10,10 +10,11 @@ class MathBattleResultDto with _$MathBattleResultDto {
     String? id,
     String? userId,
     String? createdAt,
-    double? score,
+    int? score,
     bool? isWinner,
     bool? isDraw,
     String? matchId,
+    int? trophyChange,
   }) = _MathBattleResultDto;
 
   factory MathBattleResultDto.fromJson(Map<String, dynamic> json) => _$MathBattleResultDtoFromJson(json);

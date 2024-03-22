@@ -6,6 +6,7 @@ class Assets {
 
   static const String iconHome = '$_icons/home.svg';
   static const String iconMore = '$_icons/more.svg';
+  static const String iconTrophy = '$_icons/trophy.svg';
 
   static const String imageEinstein = '$_images/einstein.png';
 }

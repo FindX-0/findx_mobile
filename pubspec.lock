@@ -30,7 +30,7 @@ packages:
     description:
       path: "packages/app_client"
       ref: HEAD
-      resolved-ref: "3c50dbd23623f7f4a0b7e2fc8c389309d8cc4bcb"
+      resolved-ref: "9a5816324f65af4a19c5f474ad058c681b9fa9d5"
       url: "https://github.com/FindX-0/findx_dart_client.git"
     source: git
     version: "0.0.1"
@@ -299,7 +299,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "3c50dbd23623f7f4a0b7e2fc8c389309d8cc4bcb"
+      resolved-ref: "9a5816324f65af4a19c5f474ad058c681b9fa9d5"
       url: "https://github.com/FindX-0/findx_dart_client.git"
     source: git
     version: "0.0.1"
@@ -373,10 +373,10 @@ packages:
     dependency: "direct dev"
     description:
       name: flutter_native_splash
-      sha256: "558f10070f03ee71f850a78f7136ab239a67636a294a44a06b6b7345178edb1e"
+      sha256: edf39bcf4d74aca1eb2c1e43c3e445fd9f494013df7f0da752fefe72020eedc0
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.10"
+    version: "2.4.0"
   flutter_screenutil:
     dependency: "direct main"
     description:
@@ -523,10 +523,10 @@ packages:
     dependency: transitive
     description:
       name: google_sign_in_android
-      sha256: bfd42c81c30c6faba16e0f62968d5505a87504aaa672b3155ee931461abb0a49
+      sha256: "38cef11ed22fc0c9bfa7b00bf7f2d91012138f5613089522917fd26c853be93e"
       url: "https://pub.dev"
     source: hosted
-    version: "6.1.21"
+    version: "6.1.22"
   google_sign_in_ios:
     dependency: transitive
     description:
@@ -620,7 +620,7 @@ packages:
     description:
       path: "packages/gql_types"
       ref: HEAD
-      resolved-ref: "3c50dbd23623f7f4a0b7e2fc8c389309d8cc4bcb"
+      resolved-ref: "9a5816324f65af4a19c5f474ad058c681b9fa9d5"
       url: "https://github.com/FindX-0/findx_dart_client.git"
     source: git
     version: "1.0.0"
@@ -692,18 +692,18 @@ packages:
     dependency: "direct main"
     description:
       name: injectable
-      sha256: cd3c422e13270c81f64ab73c80406b2b2ed563fe59d0ff2093eb7eee63d0bbeb
+      sha256: "44b4aa254816b23bf0a3285ff27da3ff0b516a6f00e0bbbea7b194f14fbb75a7"
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.2"
+    version: "2.3.5"
   injectable_generator:
     dependency: "direct dev"
     description:
       name: injectable_generator
-      sha256: "7fb573114f8bbdd169f7ae9b0bcd13f464e8170454c27be816d5a1bb39ac8086"
+      sha256: ac28d612899beda76a6375cb42dc6655a8c3ce3606cc53c25649e3c101d5d41a
       url: "https://pub.dev"
     source: hosted
-    version: "2.4.2"
+    version: "2.5.1"
   intl:
     dependency: "direct main"
     description:
@@ -1361,10 +1361,10 @@ packages:
     dependency: transitive
     description:
       name: win32
-      sha256: "464f5674532865248444b4c3daca12bd9bf2d7c47f759ce2617986e7229494a8"
+      sha256: "8cb58b45c47dcb42ab3651533626161d6b67a2921917d8d429791f76972b3480"
       url: "https://pub.dev"
     source: hosted
-    version: "5.2.0"
+    version: "5.3.0"
   xdg_directories:
     dependency: transitive
     description:

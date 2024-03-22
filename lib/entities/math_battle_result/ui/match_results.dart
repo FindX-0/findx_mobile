@@ -1,8 +1,10 @@
 import 'package:findx_dart_client/app_client.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../../app/intl/app_localizations.dart';
+import '../../../shared/values/assets.dart';
 import '../model/two_player_math_battle_results.dart';
 import '../state/math_battle_result_state.dart';
 
@@ -23,6 +25,21 @@ class MatchResults extends StatelessWidget {
               _AvatarsWithScores(results: data),
               const Spacer(flex: 2),
               Text(_statusLabel(l, data.myResult)),
+              const Spacer(),
+              Row(
+                children: [
+                  SvgPicture.asset(
+                    Assets.iconTrophy,
+                    width: 32,
+                    height: 32,
+                  ),
+                  const SizedBox(width: 6),
+                  Text(
+                    '${data.myResult.trophyChange > 0 ? '+' : '-'}${data.myResult.trophyChange}',
+                    style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
               const Spacer(),
               TextButton(
                 onPressed: context.mathBattleResultCubit.onOkPressed,

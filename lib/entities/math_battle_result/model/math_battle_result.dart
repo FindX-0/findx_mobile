@@ -8,9 +8,10 @@ class MathBattleResult with _$MathBattleResult {
     required String id,
     required String userId,
     required DateTime? createdAt,
-    required double score,
+    required int score,
     required bool isWinner,
     required bool isDraw,
     required String matchId,
+    required int trophyChange,
   }) = _MathBattleResult;
 }

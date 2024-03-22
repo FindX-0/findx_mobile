@@ -17,6 +17,7 @@ class MathBattleResultMapper {
       isWinner: dto.isWinner ?? false,
       isDraw: dto.isDraw ?? false,
       matchId: dto.matchId ?? kInvalidId,
+      trophyChange: dto.trophyChange ?? 0,
     );
   }
 
@@ -29,6 +30,7 @@ class MathBattleResultMapper {
       isWinner: model.isWinner,
       isDraw: model.isDraw,
       matchId: model.matchId,
+      trophyChange: model.trophyChange,
     );
   }
 
