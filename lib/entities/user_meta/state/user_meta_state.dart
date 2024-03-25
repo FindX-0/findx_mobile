@@ -4,7 +4,7 @@ import 'package:findx_dart_client/app_client.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-import '../api/user_meta_change_payload_channel.dart';
+import '../../../shared/network/global_entity_event_listener.dart';
 import '../model/user_meta_change_payload.dart';
 
 typedef UserMetaState = DataState<FetchFailure, UserMeta>;
@@ -12,22 +12,21 @@ typedef UserMetaState = DataState<FetchFailure, UserMeta>;
 @injectable
 class UserMetaCubit extends Cubit<UserMetaState> {
   UserMetaCubit(
-    this._userMetaChangePayloadChannel,
+    this._globalEntityEventListener,
     this._userMetaRemoteRepository,
   ) : super(UserMetaState.idle()) {
     _init();
   }
 
   final UserMetaRemoteRepository _userMetaRemoteRepository;
-  final UserMetaChangePayloadChannel _userMetaChangePayloadChannel;
+  final GlobalEntityEventListener _globalEntityEventListener;
 
   final _subsciptions = SubscriptionComposite();
 
   Future<void> _init() async {
     _subsciptions.add(
-      _userMetaChangePayloadChannel.events.listen(_onUserMetaChanged),
+      _globalEntityEventListener.userMetaChangePayloadEvents.listen(_onUserMetaChanged),
     );
-    _userMetaChangePayloadChannel.startListening();
 
     await _loadUserMeta();
   }
@@ -35,8 +34,6 @@ class UserMetaCubit extends Cubit<UserMetaState> {
   @override
   Future<void> close() async {
     await _subsciptions.closeAll();
-
-    await _userMetaChangePayloadChannel.dispose();
 
     return super.close();
   }

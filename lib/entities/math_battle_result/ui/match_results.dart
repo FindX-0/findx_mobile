@@ -16,7 +16,7 @@ class MatchResults extends StatelessWidget {
     final l = AppLocalizations.of(context);
 
     return BlocBuilder<MathBattleResultCubit, MathBattleResultState>(
-      builder: (context, state) {
+      builder: (_, state) {
         return state.maybeWhen(
           orElse: () => const SizedBox.shrink(),
           success: (data) => Column(

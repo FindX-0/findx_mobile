@@ -5,7 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../shared/util/device_id_provider.dart';
+import '../api/after_sign_in.dart';
 import '../api/auth_status_provider.dart';
+import '../api/before_auth_user_enter.dart';
 import '../api/before_sign_in.dart';
 
 typedef DeviceSignInState = ActionState<ActionFailure>;
@@ -21,6 +23,8 @@ class DeviceSignInCubit extends Cubit<DeviceSignInState> {
     this._authStatusProvider,
     this._deviceIdProvider,
     this._beforeSignIn,
+    this._afterSignIn,
+    this._beforeAuthUserEnter,
     this._authTokenStore,
   ) : super(DeviceSignInState.idle()) {
     _authenticateDeviceOptional();
@@ -30,6 +34,8 @@ class DeviceSignInCubit extends Cubit<DeviceSignInState> {
   final AuthStatusProvider _authStatusProvider;
   final DeviceIdProvider _deviceIdProvider;
   final BeforeSignIn _beforeSignIn;
+  final AfterSignIn _afterSignIn;
+  final BeforeAuthUserEnter _beforeAuthUserEnter;
   final AuthTokenStore _authTokenStore;
 
   Future<void> onRetryPressed() async {
@@ -40,6 +46,7 @@ class DeviceSignInCubit extends Cubit<DeviceSignInState> {
     final isAuthenticated = await _authStatusProvider.get();
 
     if (isAuthenticated) {
+      await _beforeAuthUserEnter();
       emit(ActionState.executed());
       return;
     }
@@ -56,8 +63,12 @@ class DeviceSignInCubit extends Cubit<DeviceSignInState> {
 
         await _authTokenStore.writeAccessToken(r.accessToken);
         await _authTokenStore.writeRefreshToken(r.refreshToken);
+
+        await _afterSignIn();
       },
     );
+
+    await _beforeAuthUserEnter();
 
     emit(ActionState.fromEither(res));
   }

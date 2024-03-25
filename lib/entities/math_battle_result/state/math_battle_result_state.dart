@@ -94,13 +94,8 @@ class MathBattleResultCubit extends Cubit<MathBattleResultState> {
   Future<void> _onMathBattleResultsChanged(List<MathBattleResult> event) async {
     final newState = await state.modifyData((data) async {
       final results = event.map(_mathBattleResultMapper.dtoToGqlModel).toList();
-      final twoPlayerResults = await _resolveFromResults(results);
-      if (twoPlayerResults == null) {
-        return null;
-      }
 
-      emit(SimpleDataState.success(twoPlayerResults));
-      return null;
+      return _resolveFromResults(results);
     });
 
     emit(newState);
