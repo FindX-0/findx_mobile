@@ -44,8 +44,10 @@ class UserMetaCubit extends Cubit<UserMetaState> {
       return;
     }
 
+    final calculatedTrophies = userMeta.trophies + (payload.userMetaChange?.trophyChange ?? 0);
+
     final updatedUserMeta = userMeta.copyWith(
-      trophies: userMeta.trophies + (payload.userMetaChange?.trophyChange ?? 0),
+      trophies: payload.userMeta?.trophies ?? calculatedTrophies,
     );
 
     emit(UserMetaState.success(updatedUserMeta));

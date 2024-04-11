@@ -184,7 +184,7 @@ class MathBattleCubit extends Cubit<MathBattleState> {
 
         emit(state.copyWith(
           currentMathProblem: firstMathProblem,
-          mathProblems: SimpleDataState.success(r.mathProblems),
+          mathProblems: SimpleDataState.success(List.of(r.mathProblems)),
           authUser: SimpleDataState.success(r.authUser),
           opponentUser: SimpleDataState.success(r.opponentUser),
         ));

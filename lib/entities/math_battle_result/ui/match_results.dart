@@ -27,6 +27,7 @@ class MatchResults extends StatelessWidget {
               Text(_statusLabel(l, data.myResult)),
               const Spacer(),
               Row(
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   SvgPicture.asset(
                     Assets.iconTrophy,
@@ -35,7 +36,7 @@ class MatchResults extends StatelessWidget {
                   ),
                   const SizedBox(width: 6),
                   Text(
-                    '${data.myResult.trophyChange > 0 ? '+' : '-'}${data.myResult.trophyChange}',
+                    '${data.myResult.trophyChange > 0 ? '+' : ''}${data.myResult.trophyChange}',
                     style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
                 ],
