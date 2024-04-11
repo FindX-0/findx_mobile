@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../app/di/register_dependencies.dart';
-import '../entities/math_field/state/math_field_list_state.dart';
-import '../entities/math_field/ui/math_field_list.dart';
+import '../app/intl/app_localizations.dart';
+import '../entities/user/state/auth_user_state.dart';
+import '../entities/user/ui/auth_user_profile.dart';
 import '../entities/user_meta/ui/user_trophy_chip.dart';
+import 'home/state/home_page_state.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -13,7 +15,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (_) => getIt<MathFieldListCubit>()),
+        BlocProvider(create: (_) => getIt<AuthUserCubit>()),
+        BlocProvider(create: (_) => getIt<HomePageCubit>()),
       ],
       child: const _Content(),
     );
@@ -25,17 +28,22 @@ class _Content extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
-      children: [
-        Align(
-          alignment: Alignment.centerRight,
-          child: Padding(
-            padding: EdgeInsets.fromLTRB(8, 16, 16, 4),
-            child: UserTrophyChip(),
+    final l = AppLocalizations.of(context);
+
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const UserTrophyChip(),
+          const SizedBox(height: 4),
+          const AuthUserProfile(),
+          const SizedBox(height: 4),
+          TextButton(
+            onPressed: context.homePageCubit.onPlayPressed,
+            child: Text(l.play),
           ),
-        ),
-        Expanded(child: MathFieldList()),
-      ],
+        ],
+      ),
     );
   }
 }

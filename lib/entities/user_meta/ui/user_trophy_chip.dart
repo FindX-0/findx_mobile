@@ -26,17 +26,17 @@ class _Content extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        color: theme.colorScheme.secondary,
-      ),
-      child: BlocBuilder<UserMetaCubit, UserMetaState>(
-        builder: (_, state) {
-          return state.maybeWhen(
-            orElse: () => const SizedBox.shrink(),
-            success: (data) => Row(
+    return BlocBuilder<UserMetaCubit, UserMetaState>(
+      builder: (_, state) {
+        return state.maybeWhen(
+          orElse: () => const SizedBox.shrink(),
+          success: (data) => Container(
+            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: theme.colorScheme.secondary,
+            ),
+            child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
                 SvgPicture.asset(
@@ -56,9 +56,9 @@ class _Content extends StatelessWidget {
                 ),
               ],
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }

@@ -40,4 +40,8 @@ class PageNavigator {
   void popTillMain() {
     GlobalNavigator.popUntil((route) => route.isFirst);
   }
+
+  void toMathFields() {
+    GlobalNavigator.pushNamed(Routes.mathFields);
+  }
 }
