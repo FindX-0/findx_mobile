@@ -8,6 +8,7 @@ import '../features/math_battle/state/math_battle_state.dart';
 import '../features/math_battle/ui/match_countdown.dart';
 import '../features/math_battle/ui/match_math_problem.dart';
 import '../features/math_battle/ui/match_players.dart';
+import '../features/math_battle/ui/match_spam_click_delay_countdown.dart';
 import '../features/math_battle/ui/match_timer.dart';
 import '../shared/ui/widgets/sliver_align_bottom.dart';
 
@@ -49,53 +50,58 @@ class _Content extends StatelessWidget {
 
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              const Align(child: MatchTimer()),
-              const SizedBox(height: 8),
-              const MatchPlayers(),
-              const SizedBox(height: 8),
-              BlocBuilder<MathBattleCubit, MathBattleState>(
-                buildWhen: (previous, current) =>
-                    previous.noMoreMathProblems != current.noMoreMathProblems ||
-                    previous.isCountdownFinished != current.isCountdownFinished,
-                builder: (context, state) {
-                  if (state.noMoreMathProblems) {
-                    return Center(
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 16.r, vertical: 32.sp),
-                        child: Text(
-                          l.noMoreMathProblems,
-                          style: TextStyle(fontSize: 16.sp),
-                        ),
-                      ),
-                    );
-                  }
+        child: Stack(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  const Align(child: MatchTimer()),
+                  const SizedBox(height: 8),
+                  const MatchPlayers(),
+                  const SizedBox(height: 8),
+                  BlocBuilder<MathBattleCubit, MathBattleState>(
+                    buildWhen: (previous, current) =>
+                        previous.noMoreMathProblems != current.noMoreMathProblems ||
+                        previous.isCountdownFinished != current.isCountdownFinished,
+                    builder: (context, state) {
+                      if (state.noMoreMathProblems) {
+                        return Center(
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 16.r, vertical: 32.sp),
+                            child: Text(
+                              l.noMoreMathProblems,
+                              style: TextStyle(fontSize: 16.sp),
+                            ),
+                          ),
+                        );
+                      }
 
-                  if (!state.isCountdownFinished) {
-                    return const MatchCountdown();
-                  }
+                      if (!state.isCountdownFinished) {
+                        return const MatchCountdown();
+                      }
 
-                  return const Expanded(
-                    child: CustomScrollView(
-                      slivers: [
-                        SliverToBoxAdapter(child: MatchMathProblemImage()),
-                        SliverToBoxAdapter(child: MatchMathProblemTexContainer()),
-                        SliverToBoxAdapter(child: MatchMathProblemText()),
-                        SliverAlignBottom(
-                          padding: EdgeInsets.only(top: 16, bottom: 16),
-                          child: MatchMathProblemAnswers(),
+                      return const Expanded(
+                        child: CustomScrollView(
+                          slivers: [
+                            SliverToBoxAdapter(child: MatchMathProblemImage()),
+                            SliverToBoxAdapter(child: MatchMathProblemTexContainer()),
+                            SliverToBoxAdapter(child: MatchMathProblemText()),
+                            SliverAlignBottom(
+                              padding: EdgeInsets.only(top: 16, bottom: 16),
+                              child: MatchMathProblemAnswers(),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                  );
-                },
+                      );
+                    },
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+            const MatchSpamClickDelayCountdown(),
+          ],
         ),
       ),
     );

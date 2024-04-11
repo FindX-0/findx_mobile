@@ -14,6 +14,7 @@ import '../../../app/navigation/page_navigator.dart';
 import '../../../entities/math_battle_score/api/math_battle_score_changed_channel.dart';
 import '../../../entities/math_battle_score/model/math_battle_score_changed.dart';
 import '../../../pages/match_result_page.dart';
+import '../../../shared/app_environment.dart';
 import '../../../shared/logger.dart';
 import '../../../shared/ui/toast/toast_notifier.dart';
 import '../../authentication/api/auth_user_info_provider.dart';
@@ -37,6 +38,7 @@ class MathBattleState with _$MathBattleState {
     Duration? matchEndsIn,
     Duration? countdownLeft,
     required bool isCountdownFinished,
+    Duration? spamClickDelayLeft,
   }) = _MathBattleState;
 
   factory MathBattleState.initial() => MathBattleState(
@@ -79,6 +81,9 @@ class MathBattleCubit extends Cubit<MathBattleState> {
   Timer? _timer;
 
   final _subscriptions = SubscriptionComposite();
+  final List<int> _recentAnswerSubmitTimestampMillis = [];
+
+  MathBattleData? _mathBattleData;
 
   Future<void> init({
     required String matchId,
@@ -104,10 +109,46 @@ class MathBattleCubit extends Cubit<MathBattleState> {
       return;
     }
 
+    if (_mathBattleData == null) {
+      logger.wtf("submitAnswer, _mathBattleData is null, can't submit answer");
+      return;
+    }
+
     if (state.currentMathProblem == null) {
       logger.wtf("submitAnswer, state.currentMathProblem is null, can't submit answer");
       return;
     }
+
+    if (_recentAnswerSubmitTimestampMillis.length >= 4) {
+      final lastFourTimestamps =
+          _recentAnswerSubmitTimestampMillis.sublist(_recentAnswerSubmitTimestampMillis.length - 4);
+
+      final firstTimeDiff = lastFourTimestamps[3] - lastFourTimestamps[2];
+      final secondTimeDiff = lastFourTimestamps[2] - lastFourTimestamps[1];
+      final thirdTimeDiff = lastFourTimestamps[1] - lastFourTimestamps[0];
+
+      logger
+          .d('firstTimeDiff: $firstTimeDiff, secondTimeDiff: $secondTimeDiff, thirdTimeDiff: $thirdTimeDiff');
+
+      final makedAsSpamClick = [firstTimeDiff, secondTimeDiff, thirdTimeDiff]
+          .every((e) => e < AppEnvironment.spamClickThresholdMillis);
+
+      logger.d(
+          'makedAsSpamClick: $makedAsSpamClick, spamDelayMillis: ${_mathBattleData!.mathField.spamDelayMillis}');
+
+      if (makedAsSpamClick) {
+        emit(state.copyWith(
+          spamClickDelayLeft: Duration(milliseconds: _mathBattleData!.mathField.spamDelayMillis),
+        ));
+
+        _recentAnswerSubmitTimestampMillis.clear();
+        return;
+      }
+    }
+
+    final serverTime = await _getServerTime();
+
+    _recentAnswerSubmitTimestampMillis.add(serverTime.millisecondsSinceEpoch);
 
     final submitRes = await _mathBattleRemoteRepository.submitMathProblemAnswer(
       matchId: _matchId!,
@@ -180,10 +221,10 @@ class MathBattleCubit extends Cubit<MathBattleState> {
     data.fold(
       (_) => _emitDataFailures(),
       (r) {
-        final firstMathProblem = r.mathProblems.firstOrNull;
+        _mathBattleData = r;
 
         emit(state.copyWith(
-          currentMathProblem: firstMathProblem,
+          currentMathProblem: r.mathProblems.firstOrNull,
           mathProblems: SimpleDataState.success(List.of(r.mathProblems)),
           authUser: SimpleDataState.success(r.authUser),
           opponentUser: SimpleDataState.success(r.opponentUser),
@@ -200,9 +241,11 @@ class MathBattleCubit extends Cubit<MathBattleState> {
   }
 
   void _initTimer(GetMatchByIdRes match) {
+    const timerInterval = Duration(milliseconds: 250);
+
     _timer?.cancel();
     _timer = Timer.periodic(
-      const Duration(milliseconds: 250),
+      timerInterval,
       (_) async {
         final serverTime = await _getServerTime();
 
@@ -220,11 +263,16 @@ class MathBattleCubit extends Cubit<MathBattleState> {
                 : Duration.zero;
 
         final countdownLeft = durationLeftTillStartAt.isNegative ? null : durationLeftTillStartAt;
+        final newSpamClickDelayLeft =
+            state.spamClickDelayLeft != null ? state.spamClickDelayLeft! - timerInterval : null;
 
         emit(state.copyWith(
           matchEndsIn: matchEndsIn,
           countdownLeft: countdownLeft,
           isCountdownFinished: durationLeftTillStartAt.isNegative,
+          spamClickDelayLeft: newSpamClickDelayLeft == null || newSpamClickDelayLeft.isNegative
+              ? null
+              : newSpamClickDelayLeft,
         ));
 
         final matchEnded = durationLeftTillEndAt.isNegative || durationLeftTillEndAt == Duration.zero;

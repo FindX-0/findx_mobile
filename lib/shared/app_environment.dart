@@ -53,6 +53,8 @@ class AppEnvironment {
   static String get googleAuthClientIdIos => dotenv.get('GOOGLE_AUTH_CLIENT_ID_IOS');
 
   static int get ticketEnqueueDelayMillis => int.parse(dotenv.get('TICKET_ENQUEUE_DELAY_MILLIS'));
+
+  static int get spamClickThresholdMillis => int.parse(dotenv.get('SPAM_CLICK_THRESHOLD_MILLIS'));
 }
 
 class _DotEnvLoader {
