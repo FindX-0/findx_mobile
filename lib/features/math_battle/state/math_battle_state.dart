@@ -25,8 +25,8 @@ part 'math_battle_state.freezed.dart';
 @freezed
 class MathBattleState with _$MathBattleState {
   const factory MathBattleState({
-    required SimpleDataState<User> authUser,
-    required SimpleDataState<User> opponentUser,
+    required SimpleDataState<GetMathBattleDataAuthUserRes> authUser,
+    required SimpleDataState<GetMathBattleDataOpponentUserRes> opponentUser,
     required int authUserScore,
     required int opponentUserScore,
     required SimpleDataState<List<GetMathBattleDataMathProblemItem>> mathProblems,

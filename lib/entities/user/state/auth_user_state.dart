@@ -1,14 +1,13 @@
 import 'package:common_models/common_models.dart';
 import 'package:findx_dart_client/app_client.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../shared/state/entity_loader_cubit.dart';
 
-typedef AuthUserState = SimpleDataState<User>;
+typedef AuthUserState = SimpleDataState<GetAuthUserRes>;
 
 @injectable
-final class AuthUserCubit extends EntityLoaderCubit<User> {
+final class AuthUserCubit extends EntityLoaderCubit<GetAuthUserRes> {
   AuthUserCubit(
     this._userRemoteRepository,
   ) {
@@ -16,8 +15,9 @@ final class AuthUserCubit extends EntityLoaderCubit<User> {
   }
 
   final UserRemoteRepository _userRemoteRepository;
+
   @override
-  Future<User?> loadEntity() async {
+  Future<GetAuthUserRes?> loadEntity() async {
     final user = await _userRemoteRepository.getAuthUser();
 
     return user.rightOrNull;
