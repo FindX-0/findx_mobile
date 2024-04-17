@@ -7,7 +7,7 @@ import 'package:injectable/injectable.dart';
 import '../../../shared/network/global_entity_event_listener.dart';
 import '../model/user_meta_change_payload.dart';
 
-typedef UserMetaState = DataState<FetchFailure, UserMeta>;
+typedef UserMetaState = DataState<NetworkCallError, UserMeta>;
 
 @injectable
 class UserMetaCubit extends Cubit<UserMetaState> {

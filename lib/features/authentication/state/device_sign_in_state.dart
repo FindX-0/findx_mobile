@@ -10,7 +10,7 @@ import '../api/auth_status_provider.dart';
 import '../api/before_auth_user_enter.dart';
 import '../api/before_sign_in.dart';
 
-typedef DeviceSignInState = ActionState<ActionFailure>;
+typedef DeviceSignInState = ActionState<NetworkCallError>;
 
 extension DeviceSignInCubitX on BuildContext {
   DeviceSignInCubit get deviceSignInCubit => read<DeviceSignInCubit>();
