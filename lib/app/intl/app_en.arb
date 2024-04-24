@@ -13,5 +13,10 @@
   "noMoreMathProblems": "No more math problems",
   "youWon": "You won",
   "youLost": "You lost",
-  "draw": "Draw"
+  "draw": "Draw",
+  "friends": "Friends",
+  "search": "Search",
+  "noFriends": "No friends",
+  "noFriendRequests": "No friend requests",
+  "requests": "Requests"
 }

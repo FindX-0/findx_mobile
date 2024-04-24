@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import '../../pages/dev_page.dart';
+import '../../pages/friends_page.dart';
 import '../../pages/main/main_page.dart';
 import '../../pages/match_page.dart';
 import '../../pages/match_result_page.dart';
@@ -19,8 +20,16 @@ Route<dynamic> routeFactory(RouteSettings settings) {
     Routes.matchResult => _createMatchResultPageRoute(settings),
     Routes.dev => _createDevPageRoute(settings),
     Routes.mathFields => _createMathFieldsPageRoute(settings),
+    Routes.friends => _createFriendsPageRoute(settings),
     _ => throw Exception('route ${settings.name} is not supported'),
   };
+}
+
+Route _createFriendsPageRoute(RouteSettings settings) {
+  return DefaultPageRoute(
+    settings: settings,
+    builder: (_) => const FriendsPage(),
+  );
 }
 
 Route _createMathFieldsPageRoute(RouteSettings settings) {

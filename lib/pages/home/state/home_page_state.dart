@@ -20,4 +20,8 @@ class HomePageCubit extends Cubit<Unit> {
   void onPlayPressed() {
     _pageNavigator.toMathFields();
   }
+
+  void onFriendsPressed() {
+    _pageNavigator.toFriends();
+  }
 }

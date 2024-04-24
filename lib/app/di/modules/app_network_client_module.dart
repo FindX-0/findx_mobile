@@ -3,10 +3,10 @@ import 'package:findx_dart_client/app_client.dart';
 import 'package:graphql/client.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../../features/authentication/api/after_sign_out.dart';
-import '../../../../shared/app_environment.dart';
-import '../../../../shared/logger.dart';
-import '../../injection_token.dart';
+import '../../../features/authentication/api/after_sign_out.dart';
+import '../../../shared/app_environment.dart';
+import '../../../shared/logger.dart';
+import '../injection_token.dart';
 
 @module
 abstract class AppNetworkClientModule {

@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../app/di/register_dependencies.dart';
@@ -38,9 +40,25 @@ class _Content extends StatelessWidget {
           const SizedBox(height: 4),
           const AuthUserProfile(),
           const SizedBox(height: 4),
-          TextButton(
-            onPressed: context.homePageCubit.onPlayPressed,
-            child: Text(l.play),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                width: 80,
+                child: TextButton(
+                  onPressed: context.homePageCubit.onPlayPressed,
+                  child: Text(l.play),
+                ),
+              ),
+              const SizedBox(width: 12),
+              SizedBox(
+                width: 80,
+                child: TextButton(
+                  onPressed: context.homePageCubit.onFriendsPressed,
+                  child: Text(l.friends),
+                ),
+              ),
+            ],
           ),
         ],
       ),

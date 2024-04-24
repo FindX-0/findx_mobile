@@ -44,4 +44,8 @@ class PageNavigator {
   void toMathFields() {
     GlobalNavigator.pushNamed(Routes.mathFields);
   }
+
+  void toFriends() {
+    GlobalNavigator.pushNamed(Routes.friends);
+  }
 }

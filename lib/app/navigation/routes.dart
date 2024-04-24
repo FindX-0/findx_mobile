@@ -7,4 +7,5 @@ abstract class Routes {
   static const String matchResult = 'matchResult';
   static const String dev = 'dev';
   static const String mathFields = 'mathFields';
+  static const String friends = 'friends';
 }

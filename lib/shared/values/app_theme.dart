@@ -6,13 +6,12 @@ import 'palette.dart';
 abstract final class AppTheme {
   AppTheme._();
 
-  static final RoundedRectangleBorder _defaultButtonShape =
-      RoundedRectangleBorder(borderRadius: BorderRadius.circular(12));
-  static const EdgeInsets _defaultButtonPadding = EdgeInsets.symmetric(vertical: 10, horizontal: 24);
+  static final _defaultButtonShape = RoundedRectangleBorder(borderRadius: BorderRadius.circular(8));
+  static const _defaultButtonPadding = EdgeInsets.symmetric(vertical: 2, horizontal: 16);
 
-  static final BorderRadius _defaultInputBorderRadius = BorderRadius.circular(4);
+  static final _defaultInputBorderRadius = BorderRadius.circular(4);
 
-  static final ThemeData light = ThemeData.light().copyWith(
+  static final light = ThemeData.light().copyWith(
     scaffoldBackgroundColor: Palette.primary,
     primaryColor: Palette.primary,
     primaryIconTheme: const IconThemeData(color: Palette.iconPrimary),
@@ -97,7 +96,8 @@ abstract final class AppTheme {
         padding: _defaultButtonPadding,
         splashFactory: NoSplash.splashFactory,
         foregroundColor: Colors.white,
-        textStyle: const TextStyle(fontSize: 15, color: Colors.white),
+        textStyle: const TextStyle(color: Colors.white),
+        minimumSize: const Size(64, 32),
       ),
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(

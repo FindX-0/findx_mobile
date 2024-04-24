@@ -30,7 +30,7 @@ packages:
     description:
       path: "packages/app_client"
       ref: HEAD
-      resolved-ref: c915daba2c174866049fcf48f0a94fdbb62265aa
+      resolved-ref: "875eff65453572bbbe1ff32abea728594f3baefd"
       url: "https://github.com/FindX-0/findx_dart_client.git"
     source: git
     version: "0.0.1"
@@ -199,7 +199,7 @@ packages:
     description:
       path: "packages/common_models"
       ref: HEAD
-      resolved-ref: f459ac4a9cbe026bec94db6b2952457c8354da48
+      resolved-ref: "0667d25edae07572c8818e87f38df5a4d469a271"
       url: "https://github.com/kume1a/flutter_common.git"
     source: git
     version: "0.0.4"
@@ -208,7 +208,7 @@ packages:
     description:
       path: "packages/common_network_components"
       ref: HEAD
-      resolved-ref: f459ac4a9cbe026bec94db6b2952457c8354da48
+      resolved-ref: "0667d25edae07572c8818e87f38df5a4d469a271"
       url: "https://github.com/kume1a/flutter_common.git"
     source: git
     version: "0.0.7"
@@ -217,7 +217,7 @@ packages:
     description:
       path: "packages/common_utilities"
       ref: HEAD
-      resolved-ref: f459ac4a9cbe026bec94db6b2952457c8354da48
+      resolved-ref: "0667d25edae07572c8818e87f38df5a4d469a271"
       url: "https://github.com/kume1a/flutter_common.git"
     source: git
     version: "0.0.1"
@@ -226,7 +226,7 @@ packages:
     description:
       path: "packages/common_widgets"
       ref: HEAD
-      resolved-ref: f459ac4a9cbe026bec94db6b2952457c8354da48
+      resolved-ref: "0667d25edae07572c8818e87f38df5a4d469a271"
       url: "https://github.com/kume1a/flutter_common.git"
     source: git
     version: "0.0.6"
@@ -299,7 +299,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: c915daba2c174866049fcf48f0a94fdbb62265aa
+      resolved-ref: "875eff65453572bbbe1ff32abea728594f3baefd"
       url: "https://github.com/FindX-0/findx_dart_client.git"
     source: git
     version: "0.0.1"
@@ -531,10 +531,10 @@ packages:
     dependency: transitive
     description:
       name: google_sign_in_ios
-      sha256: "1e0d4fde6cc07a8ff423f6bc931e83a74163d6af702004bacaee752649fdd2e7"
+      sha256: a058c9880be456f21e2e8571c1126eaacd570bdc5b6c6d9d15aea4bdf22ca9fe
       url: "https://pub.dev"
     source: hosted
-    version: "5.7.5"
+    version: "5.7.6"
   google_sign_in_platform_interface:
     dependency: transitive
     description:
@@ -620,7 +620,7 @@ packages:
     description:
       path: "packages/gql_types"
       ref: HEAD
-      resolved-ref: c915daba2c174866049fcf48f0a94fdbb62265aa
+      resolved-ref: "875eff65453572bbbe1ff32abea728594f3baefd"
       url: "https://github.com/FindX-0/findx_dart_client.git"
     source: git
     version: "1.0.0"
@@ -964,10 +964,10 @@ packages:
     dependency: transitive
     description:
       name: pointycastle
-      sha256: "70fe966348fe08c34bf929582f1d8247d9d9408130723206472b4687227e4333"
+      sha256: "79fbafed02cfdbe85ef3fd06c7f4bc2cbcba0177e61b765264853d4253b21744"
       url: "https://pub.dev"
     source: hosted
-    version: "3.8.0"
+    version: "3.9.0"
   pool:
     dependency: transitive
     description:
