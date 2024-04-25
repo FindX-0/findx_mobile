@@ -19,5 +19,9 @@
   "noFriends": "No friends",
   "noFriendRequests": "No friend requests",
   "requests": "Requests",
-  "add": "add"
+  "add": "add",
+  "requestSent": "Request sent",
+  "failedToSendFriendRequest": "Failed to send friend request",
+  "failedToAcceptFriendRequest": "Failed to accept friend request",
+  "failedToDeclineFriendRequest": "Failed to decline friend request"
 }

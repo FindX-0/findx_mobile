@@ -52,7 +52,7 @@ class _Content extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const FriendsList(),
+                  const FriendRequestList(),
                   SliverPadding(
                     padding: const EdgeInsets.fromLTRB(16, 24, 16, 10),
                     sliver: SliverToBoxAdapter(
@@ -62,7 +62,7 @@ class _Content extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const FriendRequestList(),
+                  const FriendsList(),
                 ],
               ),
             ),

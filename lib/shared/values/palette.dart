@@ -24,4 +24,5 @@ class Palette {
   static const Color secondaryContainer = Color(0xFFE3E6F3);
   static const Color onSecondary = Colors.white;
   static const Color onSecondaryContainer = Colors.black;
+  static const Color secondaryVariant = Color(0xFF675AFF);
 }

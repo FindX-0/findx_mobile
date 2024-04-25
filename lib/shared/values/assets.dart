@@ -1,13 +1,13 @@
 class Assets {
-  static const String _images = 'assets/images';
-  static const String _icons = 'assets/icons';
-  // static const String _illustrations = 'assets/illustrations';
-  // static const String _logo = 'assets/logo';
+  static const _images = 'assets/images';
+  static const _icons = 'assets/icons';
 
-  static const String iconHome = '$_icons/home.svg';
-  static const String iconMore = '$_icons/more.svg';
-  static const String iconTrophy = '$_icons/trophy.svg';
-  static const String iconSearch = '$_icons/search.svg';
+  static const iconHome = '$_icons/home.svg';
+  static const iconMore = '$_icons/more.svg';
+  static const iconTrophy = '$_icons/trophy.svg';
+  static const iconSearch = '$_icons/search.svg';
+  static const iconCancel = '$_icons/cancel.svg';
+  static const iconCheck = '$_icons/check.svg';
 
-  static const String imageEinstein = '$_images/einstein.png';
+  static const imageEinstein = '$_images/einstein.png';
 }

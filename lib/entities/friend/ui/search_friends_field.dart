@@ -26,6 +26,7 @@ class SearchFriendsField extends StatelessWidget {
           ),
         ),
       ),
+      autofocus: true,
       onChanged: context.searchFriendsCubit.onSearchQueryChanged,
     );
   }

@@ -35,7 +35,7 @@ class _Content extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
               child: SearchFriendsField(),
             ),
-            SearchFriendsList(),
+            Expanded(child: SearchFriendsList()),
           ],
         ),
       ),

@@ -1,9 +1,9 @@
-name: math
-description: math mobile app
+name: findx
+description: findx mobile app
 
 publish_to: 'none'
 
-version: 0.1.0+6
+version: 0.2.0+7
 
 environment:
   sdk: '>=3.1.4 <4.0.0'

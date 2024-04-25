@@ -39,30 +39,46 @@ class _Item extends StatelessWidget {
     final theme = Theme.of(context);
     final l = AppLocalizations.of(context);
 
-    return Row(
-      children: [
-        BlankContainer(
-          borderRadius: BorderRadius.circular(4),
-          color: theme.colorScheme.secondary,
-          width: 42,
-          height: 42,
-        ),
-        const SizedBox(width: 10),
-        Expanded(
-          child: Text(
-            user.userName ?? '',
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
+    final isButtonDisabled = user.friendshipStatus != null;
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+      child: Row(
+        children: [
+          BlankContainer(
+            borderRadius: BorderRadius.circular(4),
+            color: theme.colorScheme.secondary,
+            width: 42,
+            height: 42,
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 4),
-          child: TextButton(
-            onPressed: context.searchFriendsCubit.onFriendAction,
-            child: Text(l.add),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Text(
+              user.userName ?? '',
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
-        ),
-      ],
+          Padding(
+            padding: const EdgeInsets.only(left: 4),
+            child: TextButton(
+              onPressed: isButtonDisabled ? null : () => context.searchFriendsCubit.onAddFriend(user),
+              style: TextButton.styleFrom(
+                backgroundColor: isButtonDisabled ? theme.colorScheme.primaryContainer : null,
+              ),
+              child: Text(_buttonLabel(l)),
+            ),
+          ),
+        ],
+      ),
     );
+  }
+
+  String _buttonLabel(AppLocalizations l) {
+    return switch (user.friendshipStatus) {
+      FriendshipStatus.ACCEPTED => l.friends,
+      FriendshipStatus.REQUESTED => l.requestSent,
+      _ => l.add,
+    };
   }
 }

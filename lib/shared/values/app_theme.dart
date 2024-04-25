@@ -27,18 +27,15 @@ abstract final class AppTheme {
       onSecondaryContainer: Palette.onSecondaryContainer,
     ),
     switchTheme: SwitchThemeData(
-      thumbColor: MaterialStateProperty.resolveWith((states) {
-        if (states.contains(MaterialState.selected)) {
-          return Palette.secondary;
-        }
-        return Palette.secondary.withOpacity(.8);
-      }),
-      trackColor: MaterialStateProperty.resolveWith((states) {
-        if (states.contains(MaterialState.selected)) {
-          return Palette.secondary.withOpacity(.5);
-        }
-        return Palette.secondary.withOpacity(.3);
-      }),
+      thumbColor: MaterialStateProperty.resolveWith(
+        (states) =>
+            states.contains(MaterialState.selected) ? Palette.secondary : Palette.secondary.withOpacity(.8),
+      ),
+      trackColor: MaterialStateProperty.resolveWith(
+        (states) => states.contains(MaterialState.selected)
+            ? Palette.secondary.withOpacity(.5)
+            : Palette.secondary.withOpacity(.3),
+      ),
     ),
     tabBarTheme: const TabBarTheme(
       labelColor: Palette.elPrimary,
@@ -123,6 +120,7 @@ abstract final class AppTheme {
         primaryText: Palette.elPrimary,
         success: Palette.success,
         elSecondaryOnDark: Palette.secondaryElementOnDark,
+        secondaryVariant: Palette.secondaryVariant,
       ),
     ],
   );

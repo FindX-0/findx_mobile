@@ -1,11 +1,15 @@
 import 'package:common_models/common_models.dart';
+import 'package:common_utilities/common_utilities.dart';
 import 'package:findx_dart_client/app_client.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:logger/logger.dart';
 
 import '../../../app/navigation/page_navigator.dart';
+import '../../../shared/logger.dart';
+import '../../../shared/ui/toast/toast_notifier.dart';
 
 part 'friends_list_state.freezed.dart';
 
@@ -31,12 +35,14 @@ final class FriendsListCubit extends Cubit<FriendsListState> {
   FriendsListCubit(
     this._friendRemoteRepository,
     this._pageNavigator,
+    this._toastNotifier,
   ) : super(FriendsListState.initial()) {
     _init();
   }
 
   final FriendRemoteRepository _friendRemoteRepository;
   final PageNavigator _pageNavigator;
+  final ToastNotifier _toastNotifier;
 
   Future<void> _init() async {
     await _loadFriends();
@@ -59,9 +65,47 @@ final class FriendsListCubit extends Cubit<FriendsListState> {
     emit(state.copyWith(friendRequests: DataState.fromEither(friendRequests)));
   }
 
-  void onDeclineFriendRequestPressed(FriendWithRel friend) {}
+  Future<void> onDeclineFriendRequestPressed(FriendWithRel friend) async {
+    final res = await _friendRemoteRepository.declineFriendRequest(userId: friend.userId);
 
-  void onAcceptFriendRequestPressed(FriendWithRel friend) {}
+    if (res.isLeft) {
+      _toastNotifier.notify(
+        message: (l) => l.failedToDeclineFriendRequest,
+        title: (l) => l.error,
+      );
+      return;
+    }
+
+    final newState = await state.friendRequests.map((data) {
+      final dataClone = List.of(data);
+      dataClone.removeWhere((e) => e.userId == friend.userId);
+      return dataClone;
+    });
+
+    emit(state.copyWith(friendRequests: newState));
+  }
+
+  Future<void> onAcceptFriendRequestPressed(FriendWithRel friend) async {
+    final res = await _friendRemoteRepository.acceptFriendRequest(userId: friend.userId);
+
+    if (res.isLeft) {
+      _toastNotifier.notify(
+        message: (l) => l.failedToAcceptFriendRequest,
+        title: (l) => l.error,
+      );
+      return;
+    }
+
+    final newState = await state.friendRequests.map((data) {
+      final dataClone = List.of(data);
+      dataClone.removeWhere((e) => e.userId == friend.userId);
+      return dataClone;
+    });
+
+    emit(state.copyWith(friendRequests: newState));
+
+    return _loadFriends();
+  }
 
   void onSearchPressed() {
     _pageNavigator.toSearchFriends();
