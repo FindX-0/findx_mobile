@@ -3,7 +3,7 @@ description: findx mobile app
 
 publish_to: 'none'
 
-version: 0.2.0+7
+version: 0.2.1+8
 
 environment:
   sdk: '>=3.1.4 <4.0.0'
@@ -70,7 +70,6 @@ dev_dependencies:
   flutter_lints: ^2.0.1
   freezed: ^2.3.5
   build_runner: ^2.4.5
-  flutter_native_splash: ^2.3.1
   flutter_launcher_icons: ^0.13.1
   injectable_generator: ^2.1.6
   json_serializable: ^6.7.1
@@ -94,11 +93,3 @@ flutter_icons:
 
   remove_alpha_ios: true
   adaptive_icon_background: '#ffffffff'
-
-flutter_native_splash:
-  color: '#ffffff'
-  image: assets/logo/logo_transparent_bg.png
-
-  android_12:
-    color: '#ffffff'
-    icon_background_color: '#ffffff'
