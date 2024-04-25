@@ -8,6 +8,7 @@ import '../../pages/match_page.dart';
 import '../../pages/match_result_page.dart';
 import '../../pages/matchmaking_page.dart';
 import '../../pages/math_fields_page.dart';
+import '../../pages/search_friends_page.dart';
 import 'default_page_route.dart';
 import 'routes.dart';
 
@@ -21,8 +22,16 @@ Route<dynamic> routeFactory(RouteSettings settings) {
     Routes.dev => _createDevPageRoute(settings),
     Routes.mathFields => _createMathFieldsPageRoute(settings),
     Routes.friends => _createFriendsPageRoute(settings),
+    Routes.searchFriends => _createSearchFriendsPageRoute(settings),
     _ => throw Exception('route ${settings.name} is not supported'),
   };
+}
+
+Route _createSearchFriendsPageRoute(RouteSettings settings) {
+  return DefaultPageRoute(
+    settings: settings,
+    builder: (_) => const SearchFriendsPage(),
+  );
 }
 
 Route _createFriendsPageRoute(RouteSettings settings) {

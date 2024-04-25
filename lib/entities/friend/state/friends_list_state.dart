@@ -5,6 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../app/navigation/page_navigator.dart';
+
 part 'friends_list_state.freezed.dart';
 
 @freezed
@@ -28,11 +30,13 @@ extension FriendsListCubitX on BuildContext {
 final class FriendsListCubit extends Cubit<FriendsListState> {
   FriendsListCubit(
     this._friendRemoteRepository,
+    this._pageNavigator,
   ) : super(FriendsListState.initial()) {
     _init();
   }
 
   final FriendRemoteRepository _friendRemoteRepository;
+  final PageNavigator _pageNavigator;
 
   Future<void> _init() async {
     await _loadFriends();
@@ -59,5 +63,7 @@ final class FriendsListCubit extends Cubit<FriendsListState> {
 
   void onAcceptFriendRequestPressed(FriendWithRel friend) {}
 
-  void onSearchPressed() {}
+  void onSearchPressed() {
+    _pageNavigator.toSearchFriends();
+  }
 }

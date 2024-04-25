@@ -48,4 +48,8 @@ class PageNavigator {
   void toFriends() {
     GlobalNavigator.pushNamed(Routes.friends);
   }
+
+  void toSearchFriends() {
+    GlobalNavigator.pushNamed(Routes.searchFriends);
+  }
 }

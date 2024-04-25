@@ -1,3 +1,4 @@
+import 'package:common_widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 
 class FriendListItem extends StatelessWidget {
@@ -18,7 +19,8 @@ class FriendListItem extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Row(
         children: [
-          Container(
+          BlankContainer(
+            borderRadius: BorderRadius.circular(4),
             color: theme.colorScheme.secondary,
             width: 42,
             height: 42,

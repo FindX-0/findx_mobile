@@ -8,4 +8,5 @@ abstract class Routes {
   static const String dev = 'dev';
   static const String mathFields = 'mathFields';
   static const String friends = 'friends';
+  static const String searchFriends = 'searchFriends';
 }
